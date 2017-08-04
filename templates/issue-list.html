@@ -1,0 +1,86 @@
+<div class="container">
+
+    <button class="btn" type="button" style="float: left">Filters
+        <span class="octicon octicon-triangle-down v-align-middle text-gray" style="font-size: 13px;"></span>
+    </button>
+    <form class="subnav-search float-left" style="margin-left: -2px;">
+        <input class="form-control form-control subnav-search-input input-contrast" placeholder="Search all issues" type="text" value="is:issue is:open ">
+
+    </form>
+
+    <div class="column"> <a class=" subnav-item" data-selected-links="repo_labels /StylishThemes/GitHub-Dark/labels">Labels</a>
+        <a class=" subnav-item" data-selected-links="repo_labels /StylishThemes/GitHub-Dark/labels">Milestones</a></div>
+
+    <div style="float:right">
+        <button class="btn btn-primary" type="button">New Issue</button>
+    </div>
+
+</div>
+<br>
+<div class="container issue-container">
+    <div class="issue-list-head">
+        <div style="display: inline;">
+            <div style="display: inline-block; padding: 2px; font-size: 14px"><b><span class="octicon octicon-issue-opened"></span>&nbsp; 7 Open</b></div>
+            <div style="display: inline-block; padding: 0 10px; font-size:14px">
+                <span class="octicon octicon-check" style="padding: 2px;"></span> 379 Closed</div>
+        </div>
+        <div style="display: inline;float:right">
+            <div style="display: inline-block; padding: 2px;">
+                <a href="#" class="issue-list">
+                        Author
+                            <span class=" octicon octicon-triangle-down v-align-middle text-gray " style="font-size: 10px; "></span>
+                         
+                    </a>
+                <a href="#" class="issue-list">
+                          Labels 
+                            <span class=" octicon octicon-triangle-down v-align-middle text-gray " style="font-size: 10px; "></span>
+                         
+                    </a>
+                <a href="#" class="issue-list">
+                          Projects 
+                            <span class=" octicon octicon-triangle-down v-align-middle text-gray " style="font-size: 10px; "></span>
+                         
+                    </a>
+                <a href="#" class="issue-list">
+                          Milestones 
+                            <span class=" octicon octicon-triangle-down v-align-middle text-gray " style="font-size: 10px; "></span>
+                         
+                    </a> <a href="#" class="issue-list">
+                          Assignee 
+                            <span class=" octicon octicon-triangle-down v-align-middle text-gray " style="font-size: 10px; "></span>
+                         
+                    </a> <a href="#" class="issue-list">
+                          Sort 
+                            <span class=" octicon octicon-triangle-down v-align-middle text-gray " style="font-size: 10px; "></span>
+                         
+                    </a>
+            </div>
+
+        </div>
+    </div>
+    <div class="issue-list-content" ng-repeat="item in [0,1,2,3,4,5]">
+        <div style="display: inline-table;">
+            <span class="octicon octicon-issue-opened text-green"></span>
+        </div>
+        <div style="display: inline-table ; margin-left: 15px ;">
+            <span style=" font-weight: 600; font-size: 16px ;color:#24292e"> Dark Theme For Not A Bug</span>
+            <span class="labels">
+                <a href="#" class="label v-align-text-top" style="background-color: #fbca04; color: #332900;" 
+               title="Label: future">future</a>
+            </span>
+            <br>
+            <span style=" font-size: 12px;">#493 opened on May 17 by deep-programmer </span>
+
+        </div>
+        <div class="float-right"><span class="octicon octicon-comment v-align-middle"></span> 3 </div>
+
+    </div>
+
+
+
+
+</div>
+<div class="protip">
+    <span class="octicon octicon-light-bulb text-gray"></span>
+    <strong>ProTip!</strong> Adding <a href="#  ">no:label</a> will show everything without a label.
+</div>
