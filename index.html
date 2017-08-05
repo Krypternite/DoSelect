@@ -13,19 +13,17 @@
 
     <script src="js/app.js"></script>
     <script src="js/controller.js"></script>
-    <script src="js/services.js"></script>
+    <!--    <script src="js/services.js"></script>-->
 
 </head>
 
 <body ng-app="doSelectApp">
     <div class="header" role="banner">
-        <div class="container-lg px-3 clearfix">
+        <div class="container clearfix">
             <div class="d-flex flex-justify-between">
                 <div class="d-flex">
                     <a class="header-logo-invertocat" href="https://github.com/" data-hotkey="g d" aria-label="Homepage" data-ga-click="Header, go to dashboard, icon:logo">
-                        <svg aria-hidden="true" class="octicon octicon-mark-github" height="32" version="1.1" viewBox="0 0 16 16" width="32">
-                            <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
-                        </svg>
+                        <span class="octicon octicon-mark-github" style="line-height: 32px;font-size: 32px;"></span>
                     </a>
 
 
@@ -182,33 +180,31 @@
             </div>
         </div>
     </div>
-    <div class="blankslate" style="padding-bottom: 0px">
+    <div class="blankslate" style="padding: 18px;  padding-bottom: 0px;">
         <div class="container">
             <div class="column">
-                <svg aria-hidden="true" class="octicon octicon-repo" height="16" version="1.1" viewBox="0 0 12 16" width="12">
-                    <path fill-rule="evenodd" d="M4 9H3V8h1v1zm0-3H3v1h1V6zm0-2H3v1h1V4zm0-2H3v1h1V2zm8-1v12c0 .55-.45 1-1 1H6v2l-1.5-1.5L3 16v-2H1c-.55 0-1-.45-1-1V1c0-.55.45-1 1-1h10c.55 0 1 .45 1 1zm-1 10H1v2h2v-1h3v1h5v-2zm0-10H2v9h9V1z"></path>
-                </svg>
+                <span class="octicon octicon-repo text-gray-light"></span>
                 <span style="font-size:18px">
-                    <a href="#">DoSelectRepo</a>/<a href="#"><b>GitHub</b></a></span>
+                    <a href="#">DoSelectRepo</a> / <a href="#"><b> GitHub</b></a></span>
             </div>
-            <div class="column" style="float: right">
+            <div class="column" style="float: right; padding-right: 0px">
                 <div class="right">
-                    <div class="column">
+                    <div class="column" style="padding-right: 0px">
                         <a class="btn btn-sm btn-with-count" href="#" role="button">
                             <span class="octicon octicon-eye"></span> Watch
                         </a>
 
                         <a class="social-count" href="#">6</a>
                     </div>
-                    <div class="column">
+                    <div class="column" style="padding-right: 0px">
                         <a class="btn btn-sm btn-with-count" href="#" role="button">
                             <span class="octicon octicon-star"></span> Star
                         </a>
                         <a class="social-count" href="#">6</a>
                     </div>
-                    <div class="column">
+                    <div class="column" style="padding-right: 0px">
                         <a class="btn btn-sm btn-with-count" href="#" role="button">
-                            <span class="octicon octicon-repo-forked"></span> Form
+                            <span class="octicon octicon-repo-forked"></span> Fork
                         </a>
                         <a class="social-count" href="#">6</a>
 
@@ -217,28 +213,28 @@
             </div>
             <div class="container">
                 <div class="column">
-                    <div class="tabnav left" style="border:0; margin: 0; margin-top: 10px;">
+                    <div class="tabnav left" style="border:0; margin: 0; margin-top: 15px;">
                         <nav class="tabnav-tabs">
-                            <a href="#" class="tabnav-tab " style="padding:7px 15px 8px;">
+                            <a href="#" class="tabnav-tab " style="padding:7px 15px 12px;">
                                 <span class="octicon octicon-code"></span> Code</a>
-                            <a href="#" class="tabnav-tab selected" style=" padding: 7px 15px 8px; border-top: #e36209  solid;">
+                            <a href="#" class="tabnav-tab selected" style=" padding: 7px 15px 12px; border-top: #e36209  solid;">
 
                                 <span class="octicon octicon-issue-opened"></span> Issues
                                 <span class="Counter">9</span>
                             </a>
-                            <a href="#" class="tabnav-tab" style=" padding: 7px 15px 8px;">
+                            <a href="#" class="tabnav-tab" style=" padding: 7px 15px 12px;">
                                 <span class="octicon octicon-git-pull-request"></span> <span class="octicon octicon-project"></span> Pull requests
                                 <span class="Counter">0</span>
                             </a>
-                            <a href="#" class="tabnav-tab" style="   padding: 7px 15px 8px;">
+                            <a href="#" class="tabnav-tab" style="   padding: 7px 15px 12px;">
                                 <span class="octicon octicon-project"></span> Projects
                                 <span class="Counter">0</span>
                             </a>
-                            <a href="#" class="tabnav-tab" style="   padding: 7px 15px 8px;">
+                            <a href="#" class="tabnav-tab" style="   padding: 7px 15px 12px;">
                                 <span class="octicon octicon-book"></span> Wiki
 
                             </a>
-                            <a href="#" class="tabnav-tab" style="   padding: 7px 15px 8px;">
+                            <a href="#" class="tabnav-tab" style="   padding: 7px 15px 12px;">
                           Insights 
                             <span class="octicon octicon-triangle-down v-align-middle text-gray" style="font-size: 10px;"></span>
                          
@@ -252,6 +248,33 @@
     </div>
     <br>
     <div ng-view></div>
+    <div class="container">
+        <div class="site-footer ">
+            <ul class="site-footer-links float-right">
+                <li><a href="https://github.com/contact" data-ga-click="Footer, go to contact, text:contact">Contact GitHub</a></li>
+                <li><a href="https://developer.github.com" data-ga-click="Footer, go to api, text:api">API</a></li>
+                <li><a href="https://training.github.com" data-ga-click="Footer, go to training, text:training">Training</a></li>
+                <li><a href="https://shop.github.com" data-ga-click="Footer, go to shop, text:shop">Shop</a></li>
+                <li><a href="https://github.com/blog" data-ga-click="Footer, go to blog, text:blog">Blog</a></li>
+                <li><a href="https://github.com/about" data-ga-click="Footer, go to about, text:about">About</a></li>
+
+            </ul>
+
+            <a href="https://github.com" aria-label="Homepage" class="site-footer-mark" title="GitHub">
+                <svg aria-hidden="true" class="octicon octicon-mark-github" height="24" version="1.1" viewBox="0 0 16 16" width="24">
+                    <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+                </svg>
+            </a>
+            <ul class="site-footer-links">
+                <li>© 2017 <span title="0.29530s from unicorn-4267823882-lp56b">GitHub</span>, Inc.</li>
+                <li><a href="https://github.com/site/terms" data-ga-click="Footer, go to terms, text:terms">Terms</a></li>
+                <li><a href="https://github.com/site/privacy" data-ga-click="Footer, go to privacy, text:privacy">Privacy</a></li>
+                <li><a href="https://github.com/security" data-ga-click="Footer, go to security, text:security">Security</a></li>
+                <li><a href="https://status.github.com/" data-ga-click="Footer, go to status, text:status">Status</a></li>
+                <li><a href="https://help.github.com" data-ga-click="Footer, go to help, text:help">Help</a></li>
+            </ul>
+        </div>
+    </div>
 
 </body>
 

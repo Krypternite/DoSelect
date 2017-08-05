@@ -28,3 +28,55 @@
         color: rgba(255, 255, 255, 0.75);
         background-color: #24292e;
     }
+    .issue-container {
+        border: 0.5px solid #e1e4e8;
+        border-radius: .25rem .25rem 0 0;
+        border-bottom: 0;
+    }
+    .issue-list-head {
+        position: relative;
+        padding: 12px;
+        min-width: 100%;
+        font-size: 13px;
+        line-height: 1.4;
+        border-bottom: 1px solid #e5e5e5;
+        background-color: #f6f8fa;
+        /*        border: 1px solid #e1e4e8;*/
+    }
+    .issue-list-content {
+        position: relative;
+        padding: 12px;
+        min-width: 100%;
+        font-size: 12px;
+        line-height: 12px;
+        border-bottom: 1px solid #e5e5e5;
+        background-color: #fff;
+    }
+    .issue-list-content:hover {
+        background: #f6f8fa
+    }
+    a.issue-list {
+        padding: 0 0 0 15px;
+        display: inline-block;
+        font-size: 14px;
+        line-height: 14px;
+        color: #586069;
+        text-decoration: none;
+        background-color: transparent;
+        border: 1px solid transparent;
+        border-bottom: 0;
+    }
+    a.issue-list:hover {
+        text-decoration: none;
+        color: black;
+    }
+    .footer {
+        position: relative;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        margin-top: 40px;
+        font-size: 12px;
+        line-height: 1.5;
+        color: #586069;
+        border-top: 1px solid #eaecef;
+    }

@@ -1,4 +1,9 @@
-var app = angular.module('doSelectApp', ['ngRoute', 'doSelectApp.controllers', 'doSelectApp.services']);
+var app = angular.module('doSelectApp', ['ngRoute', 'doSelectApp.controllers' /*,'doSelectApp.services'*/ ]);
+app.run(function ($rootScope) {
+    console.log("hel");
+});
+
+
 app.config(function ($routeProvider) {
     $routeProvider
         .when("/", {
@@ -13,8 +18,9 @@ app.config(function ($routeProvider) {
     })
     .when("/blue", {
         templateUrl: "blue.htm"
-    })
-    .otherwise({
-            templateUrl: "blue.html"
-        });*/
+    })*/
+        .otherwise({
+            templateUrl: "templates/issue-list.html",
+            controller: 'issueListCtrl'
+        });
 });
