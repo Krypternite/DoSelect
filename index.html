@@ -10,10 +10,10 @@
     <script src="https://code.angularjs.org/1.5.0/angular.js"></script>
     <script src="https://code.angularjs.org/1.5.0/angular-route.js"></script>
     <!--    <script src="js/index.js"></script>-->
-
+    <script src="js/issues.json"></script>
     <script src="js/app.js"></script>
     <script src="js/controller.js"></script>
-    <!--    <script src="js/services.js"></script>-->
+    <script src="js/services.js"></script>
 
 </head>
 
@@ -234,11 +234,12 @@
                                 <span class="octicon octicon-book"></span> Wiki
 
                             </a>
-                            <a href="#" class="tabnav-tab" style="   padding: 7px 15px 12px;">
+                            <a class="tabnav-tab dropbtn" style="   padding: 7px 15px 12px;">
                           Insights 
                             <span class="octicon octicon-triangle-down v-align-middle text-gray" style="font-size: 10px;"></span>
                          
-                    </a>
+                            </a>
+
 
                         </nav>
                     </div>
@@ -277,5 +278,37 @@
     </div>
 
 </body>
+<script>
+    /* When the user clicks on the button, toggle between hiding and showing the dropdown content */
+    function drpTest(id) {
+
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+        document.getElementById(id).classList.toggle("show")
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+
+        if (!event.target.matches('.dont-close')) {
+
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+
+</script>
 
 </html>
