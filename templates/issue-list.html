@@ -12,11 +12,15 @@
         <a class=" subnav-item" data-selected-links="repo_labels /StylishThemes/GitHub-Dark/labels">Milestones</a></div>
 
     <div style="float:right">
-        <button class="btn btn-primary" type="button">New Issue</button>
+        <button ng-click="issueScopeData.newIssue()" class="btn btn-primary" type="button">New Issue</button>
     </div>
 
 </div>
 <br>
+<div ng-click="issueScopeData.resetFilter()" ng-show="issueScopeData.filtersSet()" class="container clear-filter" style="font-weight: 600">
+    <a><span class="octicon octicon-x issues-reset-query-icon"></span> Clear current search query, filters, and sorts</a>
+</div>
+<br ng-show="issueScopeData.filtersSet()">
 <div class="container issue-container">
     <div ng-include src="'templates/issueFilter.html'"></div>
     <!--|filter : issueScopeData.issueFilters.author-->
@@ -32,7 +36,7 @@
                ng-attr-title="Label:{{label.title}} ">{{label.title}}</a>
             </span>
             <br>
-            <div style=" font-size: 12px; padding-top: 5px; ">#{{issue.serial}} opened on {{issue.date | date:'MMM yy'}} by {{issue.author}} </div>
+            <div style=" font-size: 12px; padding-top: 5px; ">#{{issue.key}} opened on {{issue.date | date:'MMM yy'}} by {{issue.author}} </div>
 
         </div>
         <div class="float-right "><span class="octicon octicon-comment v-align-middle "></span> {{issue.comments.length}} </div>

@@ -1,0 +1,70 @@
+<!--ASSIGNEE DIV-->
+
+<div onclick="drpTest('drp_new_auth')" class="dropdown dropbtn new-filter-head">
+    <span class="dropbtn dont-close octicon octicon-gear " style="float:right"></span>
+    <span class="dropbtn dont-close">Assignee</span>
+    <div id='drp_new_auth' class="drp-hold dropdown-content">
+
+        <div class="filter-down">
+            <div class="filter-head">
+                <span class="octicon octicon-x js-menu-close" style="float:right"></span>
+                <span>Assign up to 10 people to this issue</span>
+            </div>
+            <div class="filter-head">
+                <span>
+                    <input placeholder="Filter people" type="text" ng-model="newIssueScope.issueFilters.assigneeFilterModel" class="form-control dont-close input-block">
+                </span>
+            </div>
+            <a ng-style="newIssueScope.contains(newIssueScope.issueFilters.assignee , assignee, 'assignee') && {'font-weight':600}" ng-click="newIssueScope.assigneeSelect(assignee)" ng-repeat="assignee in filteredItems = (newIssueScope.authorsList | filter: newIssueScope.issueFilters.assigneeFilterModel)" class="item dropbtn dont-close">
+                <span ng-if="newIssueScope.contains(newIssueScope.issueFilters.assignee , assignee, 'assignee')" style="line-height: 30px;" class=" octicon octicon-check select-icon-left "></span>
+                <div class="dropbtn dont-close">
+                    <img style=" vertical-align: middle;    padding: 3px;    border-radius: 5px;" height="30" src="https://avatars3.githubusercontent.com/u/867840?v=4&amp;s=60" width="30"> {{assignee}}
+                    <span ng-if="newIssueScope.contains(newIssueScope.issueFilters.assignee , assignee, 'assignee')" style="line-height:inherit;" class=" octicon octicon-x select-icon-right "></span>
+                </div>
+
+            </a>
+            <div class="item dropbtn dont-close" ng-if="filteredItems.length === 0">Nothing to show</div>
+
+        </div>
+    </div>
+    <div ng-if="newIssueScope.issueFilters.assignee.length > 0">
+        <div class="label-selected" ng-repeat="assignee in newIssueScope.issueFilters.assignee">
+            <img style=" vertical-align: middle;    padding: 3px;    border-radius: 5px;" height="25" src="https://avatars3.githubusercontent.com/u/867840?v=4&amp;s=60" width="25"> {{assignee}}
+        </div>
+    </div>
+    <div ng-if="newIssueScope.issueFilters.assignee.length == 0" style="margin-top:10px;font-size:10px;">None one-assign to yourself</div>
+
+</div>
+<!--LABELS DIV-->
+<div onclick="drpTest('drp_new_lbl')" class="dropdown dropbtn new-filter-head">
+    <span class="dropbtn dont-close octicon octicon-gear " style="float:right"></span>
+    <span class="dropbtn dont-close">Labels</span>
+    <div id='drp_new_lbl' class="drp-hold dropdown-content">
+
+        <div class="filter-down">
+            <div class="filter-head">
+                <span class="octicon octicon-x" style="float:right"></span>
+                <span>Apply labels to this issue</span>
+            </div>
+            <div class="filter-head">
+                <span>
+                                <input placeholder="Filter labels" type="text" ng-model="newIssueScope.issueFilters.labelFilterModel" class="form-control dont-close input-block">
+                            </span>
+            </div>
+
+            <a ng-click="newIssueScope.labelSelect(label)" ng-repeat="label in newIssueScope.labelsList | filter: newIssueScope.issueFilters.labelFilterModel" class="dropbtn dont-close item">
+                <span ng-if="newIssueScope.contains(newIssueScope.issueFilters.labels , label, 'label')" class=" octicon octicon-check select-icon-left "></span>
+
+                <div class="dropbtn dont-close" ng-style="newIssueScope.contains(newIssueScope.issueFilters.labels , label, 'label') && {'font-weight':600}"><span class="dropbtn dont-close label-block" ng-class="label.css">&nbsp;</span> {{label.title}}
+                    <span ng-if="newIssueScope.contains(newIssueScope.issueFilters.labels , label, 'label')" style="line-height: inherit;" class="dropbtn dont-close  octicon octicon-x select-icon-right "></span>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div ng-if="newIssueScope.issueFilters.labels.length > 0">
+        <div ng-class="label.css" class="label-selected" ng-repeat="label in newIssueScope.issueFilters.labels">{{label.title}}
+        </div>
+    </div>
+    <div ng-if="newIssueScope.issueFilters.labels.length === 0" style="margin-top:10px;font-size:10px;">None yet</div>
+
+</div>

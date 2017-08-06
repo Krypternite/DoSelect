@@ -21,11 +21,11 @@
                     </div>
                     <div class="filter-head">
                         <span>
-                                <input type="text" ng-model="issueScopeData.issueFilters.authorFilterModel" class="form-control dont-close input-block">
+                                <input placeholder="Filter users" type="text" ng-model="issueScopeData.issueFilters.authorFilterModel" class="form-control dont-close input-block">
                             </span>
                     </div>
                     <a ng-style="issueScopeData.issueFilters.author === author && {'font-weight':600}" ng-click="issueScopeData.authorSelect(author)" ng-repeat="author in issueScopeData.authorsList | filter: issueScopeData.issueFilters.authorFilterModel" class="item">
-                        <span ng-if="issueScopeData.issueFilters.author === author" style="line-height: 30px;" class=" octicon octicon-check select-menu-item-icon "></span>
+                        <span ng-if="issueScopeData.issueFilters.author === author" style="line-height: 30px;" class=" octicon octicon-check select-icon-left "></span>
                         <div>
                             <img style=" vertical-align: middle;    padding: 3px;    border-radius: 5px;" height="30" src="https://avatars3.githubusercontent.com/u/867840?v=4&amp;s=60" width="30"> {{author}}
                         </div>
@@ -55,7 +55,7 @@
                     </div>
                     <div class="filter-head">
                         <span>
-                                <input type="text" ng-model="issueScopeData.issueFilters.labelFilterModel" class="form-control dont-close input-block">
+                                <input placeholder="Filter labels" type="text" ng-model="issueScopeData.issueFilters.labelFilterModel" class="form-control dont-close input-block">
                             </span>
                     </div>
 
@@ -66,7 +66,7 @@
                     </a>
 
                     <a ng-click="issueScopeData.labelSelect(label)" ng-repeat="label in issueScopeData.labelsList | filter: issueScopeData.issueFilters.labelFilterModel" class="item">
-                        <span ng-if="issueScopeData.contains(issueScopeData.issueFilters.labels , label, 'label')" class=" octicon octicon-check select-menu-item-icon "></span>
+                        <span ng-if="issueScopeData.contains(issueScopeData.issueFilters.labels , label, 'label')" class=" octicon octicon-check select-icon-left "></span>
 
                         <div ng-style="issueScopeData.contains(issueScopeData.issueFilters.labels , label, 'label') && {'font-weight':600}"><span class="label-block" ng-class="label.css">&nbsp;</span> {{label.title}}</div>
                     </a>
@@ -97,7 +97,34 @@
                             <span class=" octicon octicon-triangle-down v-align-middle text-gray " style="font-size: 10px; "></span>
                          
                     </a>
+            <div id='drp_ass' class="drp-hold dropdown-content">
+
+                <div class="filter-down">
+                    <div class="filter-head">
+                        <span class="octicon octicon-x js-menu-close" style="float:right"></span>
+                        <span>Filter by who’s assigned</span>
+                    </div>
+                    <div class="filter-head">
+                        <span>
+                                <input type="text" 
+                                       ng-model="issueScopeData.issueFilters.assigneeFilterModel" placeholder="Filter users" class="form-control dont-close input-block">
+                            </span>
+                    </div>
+                    <a ng-style="issueScopeData.issueFilters.assignee === assignee && {'font-weight':600}" ng-click="issueScopeData.assigneeSelect(assignee)" ng-repeat="assignee in issueScopeData.authorsList | filter: issueScopeData.issueFilters.assigneeFilterModel" class="item">
+                        <span ng-if="issueScopeData.issueFilters.assignee === assignee" style="line-height: 30px;" class=" octicon octicon-check select-icon-left "></span>
+                        <div>
+                            <img style=" vertical-align: middle;    padding: 3px;    border-radius: 5px;" height="30" src="https://avatars3.githubusercontent.com/u/867840?v=4&amp;s=60" width="30"> {{assignee}}
+                        </div>
+                    </a>
+                    <a class="item" ng-if="issueScopeData.issueFilters.authorFilterModel.length > 0" ng-click="issueScopeData.authorSelect(issueScopeData.issueFilters.authorFilterModel)"><span style="font-weight: 600">
+                        assignee:{{issueScopeData.issueFilters.assigneeFilterModel}}
+                        </span>
+                    <br>
+                    Filter by this user</a>
+                </div>
+            </div>
         </div>
+
         <!--SORT FILTER-->
         <div onclick="drpTest('drp_sort')" class="dropdown">
             <a class="issue-list dropbtn dont-close">
@@ -113,36 +140,8 @@
                         <span>Sort by</span>
                     </div>
                     <a ng-style="issueScopeData.issueFilters.sort.code === sorter.code && {'font-weight':600}" ng-repeat="sorter in issueScopeData.sortList" ng-click="issueScopeData.sortSelect(sorter)" class="item">
-                        <span ng-show="issueScopeData.issueFilters.sort.code === sorter.code" class=" octicon octicon-check select-menu-item-icon "></span> {{sorter.title}}
+                        <span ng-show="issueScopeData.issueFilters.sort.code === sorter.code" class=" octicon octicon-check select-icon-left "></span> {{sorter.title}}
                     </a>
-
-                    <!--<a ng-click="issueScopeData.sortSelect('nw')" class="item">
-<span class=" octicon octicon-check select-menu-item-icon "></span> Newest
-</a>
-<a ng-click="issueScopeData.sortSelect('ol')" class="item">
-    <span class=" octicon octicon-check select-menu-item-icon "></span>
-    <div>Oldest</div>
-</a>
-
-<a ng-click="issueScopeData.sortSelect('mc')" class="item">
-    <span class=" octicon octicon-check select-menu-item-icon "></span>
-    <div>Most Commented</div>
-</a>
-
-<a ng-click="issueScopeData.sortSelect('lc')" class="item">
-    <span class=" octicon octicon-check select-menu-item-icon "></span>
-    <div>Least Commented</div>
-</a>
-
-<a ng-click="issueScopeData.sortSelect('ru')" class="item">
-    <span class=" octicon octicon-check select-menu-item-icon "></span>
-    <div>Recently Updated</div>
-</a>
-
-<a ng-click="issueScopeData.sortSelect('lru')" class="item">
-    <span class=" octicon octicon-check select-menu-item-icon "></span>
-    <div>Least Recently Updated</div>
-</a>-->
 
                 </div>
 
