@@ -9,7 +9,7 @@ angular.module('doSelectApp.services', [])
                         resolve(true);
                     }
 
-                    var openRequest = window.indexedDB.open("DSIDB", 2);
+                    var openRequest = window.indexedDB.open("DSIDB", 1);
 
                     openRequest.onerror = function (e) {
                         console.log("Error opening db");
