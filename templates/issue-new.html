@@ -72,7 +72,7 @@
                     <span class="octicon octicon-markdown v-align-bottom" style="font-size: 12px;line-height: inherit"></span> Styling with Markdown is supported
 
                     <button type="submit" ng-disabled="commentForm.$invalid" class="btn btn-primary">Submit new issue</button>
-                    <button class="btn">Cancel</button>
+                    <button ng-click="newIssueScope.cancelIssue()" class="btn">Cancel</button>
                 </div>
             </div>
         </form>
