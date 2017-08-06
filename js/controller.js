@@ -124,12 +124,14 @@ angular.module('doSelectApp.controllers', [])
                 return false;
             },
             filterModelUpdate: function (value, type) {
+                if (value.split(" ").length > 1) {
+                    value = '"' + value + '"';
+                }
                 if (type === 'author') {
                     if (value.length > 0)
                         this.filterModel = this.filterModel.split(/ author:\w+/).join('') + " author:" + value;
                     else
                         this.filterModel = this.filterModel.split(/ author:\w+/).join('');
-                    this.filterModel = temp.concat(" author:" + value);
                 } else if (type === 'assignee') {
                     if (value.length > 0)
                         this.filterModel = this.filterModel.split(/ author:\w+/).join('') + " assignee:" + value;
@@ -219,10 +221,94 @@ angular.module('doSelectApp.controllers', [])
                         $scope.author = !$scope.author;
                         break;
                 }
+            },
+            processFiltersInput: function () {
+                var filterText = this.filterModel;
+                var m;
+                var re_is = /(?:^|is):([a-zA-Z]+)/gm;
+                var re_label1 = /(?:^|label):([a-zA-Z]+\\?)/gm;
+                var re_label2 = /(?:^|label):(\")(.*?)(\")/gm;
+                var re_auth1 = /(?:^|author):([a-zA-Z]+\\?)/gm;
+                var re_auth2 = /(?:^|author):(\")(.*?)(\")/gm;
+                var re_sort = /(?:^|sort):([a-zA-Z]+\\?-[a-zA-Z]+\\?)/gm;
+                var re_ass1 = /(?:^|assignee):([a-zA-Z]+\\?)/gm;
+                var re_ass2 = /(?:^|assignee):(\")(.*?)(\")/gm;
+                var is = "";
+                var label = [];
+                var auth = "";
+                var sort = "";
+                var ass = "";
+                while ((m = re_auth1.exec(filterText)) != null) {
+                    if (m.index === re_auth1.lastIndex) {
+                        re_auth1.lastIndex++;
+                    }
+                    auth = m[1];
+
+                }
+
+                while ((m = re_auth2.exec(filterText)) != null) {
+                    if (m.index === re_auth2.lastIndex) {
+                        re_auth2.lastIndex++;
+                    }
+                    auth = m[2];
+
+                }
+                while ((m = re_sort.exec(filterText)) != null) {
+                    if (m.index === re_sort.lastIndex) {
+                        re_sort.lastIndex++;
+                    }
+                    sort = m[1];
+                }
+                while ((m = re_ass1.exec(filterText)) != null) {
+                    if (m.index === re_ass1.lastIndex) {
+                        re_ass1.lastIndex++;
+                    }
+                    ass = m[1];
+                }
+
+                while ((m = re_ass2.exec(filterText)) != null) {
+                    if (m.index === re_ass2.lastIndex) {
+                        re_ass2.lastIndex++;
+                    }
+                    ass = m[2];
+                }
+                2
+                while ((m = re_label1.exec(filterText)) != null) {
+                    if (m.index === re_label1.lastIndex) {
+                        re_label.lastIndex++;
+                    }
+                    label.push(m[1]);
+                }
+                while ((m = re_label2.exec(filterText)) != null) {
+                    if (m.index === re_label2.lastIndex) {
+                        re_label.lastIndex++;
+                    }
+                    label.push(m[2]);
+                }
+
+
+                this.issueFilters.author = auth;
+                this.issueFilters.assignee = ass;
+                this.sortList.forEach(function (item) {
+                    if (item.desc === sort) {
+                        $scope.issueScopeData.issueFilters.sort = item;
+                    }
+                });
+                if (label.length > 0) {
+                    label.forEach(function (item) {
+                        $scope.issueScopeData.labelsList.forEach(function (labelObj) {
+                            if (labelObj.title === item)
+                                $scope.issueScopeData.issueFilters.labels.push(labelObj);
+                        })
+
+                    })
+                }
+                //this.issueFilters.sort = auth = "";
+                console.log(auth, sort, ass, label);
+
+
             }
         };
-        console.log("CONTROLLER");
-
         issueConfigData.getOpenIssues();
         issueConfigData.getClosedIssues()
     })
@@ -319,6 +405,9 @@ angular.module('doSelectApp.controllers', [])
                     function (err) {
                         console.log(err);
                     })
+            },
+            cancelIssue: function () {
+                $location.path("/");
             }
         };
     })

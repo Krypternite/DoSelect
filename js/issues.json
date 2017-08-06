@@ -3,7 +3,7 @@ var sortList = [
         title: 'Newest',
         sortParam: '-date',
         code: 'nw',
-        desc: 'created-desc '
+        desc: 'created-desc'
         },
     {
 
