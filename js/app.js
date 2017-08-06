@@ -1,6 +1,14 @@
-var app = angular.module('doSelectApp', ['ngRoute', 'doSelectApp.controllers' /*,'doSelectApp.services'*/ ]);
-app.run(function ($rootScope) {
-    console.log("hel");
+var app = angular.module('doSelectApp', ['ngRoute', 'doSelectApp.controllers', 'doSelectApp.services']);
+app.run(function ($rootScope, issueService) {
+    issueService.openDatabase().then(function () {
+        issueService.setupIndexedDb(setupJSON).then(function (data) {
+            console.log("SETUP", data);
+        }, function (error) {
+            console.log(error);
+        })
+    }, function (err) {
+        console.log(err);
+    });
 });
 
 
