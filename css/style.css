@@ -1,82 +1,226 @@
-    /* Custom Stylesheet */
-    /**
+/* Custom Stylesheet */
+
+
+/**
  * Use this file to override Materialize files so you can update
  * the core Materialize files in the future
  *
  * Made By MaterializeCSS.com
  */
-    
-    .icon-block {
-        padding: 0 15px;
-    }
-    .icon-block .material-icons {
-        font-size: inherit;
-    }
-    .brand-logo {
-        float: left;
-        margin: -1px 15px -1px -2px;
-        color: white;
-        white-space: nowrap;
-    }
-    .octicon {
-        fill: currentColor;
-    }
-    .header {
-        z-index: 1;
-        padding-top: 12px;
-        padding-bottom: 12px;
-        color: rgba(255, 255, 255, 0.75);
-        background-color: #24292e;
-    }
-    .issue-container {
-        border: 0.5px solid #e1e4e8;
-        border-radius: .25rem .25rem 0 0;
-        border-bottom: 0;
-    }
-    .issue-list-head {
-        position: relative;
-        padding: 12px;
-        min-width: 100%;
-        font-size: 13px;
-        line-height: 1.4;
-        border-bottom: 1px solid #e5e5e5;
-        background-color: #f6f8fa;
-        /*        border: 1px solid #e1e4e8;*/
-    }
-    .issue-list-content {
-        position: relative;
-        padding: 12px;
-        min-width: 100%;
-        font-size: 12px;
-        line-height: 12px;
-        border-bottom: 1px solid #e5e5e5;
-        background-color: #fff;
-    }
-    .issue-list-content:hover {
-        background: #f6f8fa
-    }
-    a.issue-list {
-        padding: 0 0 0 15px;
-        display: inline-block;
-        font-size: 14px;
-        line-height: 14px;
-        color: #586069;
-        text-decoration: none;
-        background-color: transparent;
-        border: 1px solid transparent;
-        border-bottom: 0;
-    }
-    a.issue-list:hover {
-        text-decoration: none;
-        color: black;
-    }
-    .footer {
-        position: relative;
-        padding-top: 40px;
-        padding-bottom: 40px;
-        margin-top: 40px;
-        font-size: 12px;
-        line-height: 1.5;
-        color: #586069;
-        border-top: 1px solid #eaecef;
-    }
+
+body {
+    overflow-x: hidden;
+}
+
+.icon-block {
+    padding: 0 15px;
+}
+
+.icon-block .material-icons {
+    font-size: inherit;
+}
+
+.brand-logo {
+    float: left;
+    margin: -1px 15px -1px -2px;
+    color: white;
+    white-space: nowrap;
+}
+
+.octicon {
+    fill: currentColor;
+}
+
+.header {
+    z-index: 1;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    color: rgba(255, 255, 255, 0.75);
+    background-color: #24292e;
+}
+
+.issue-container {
+    border: 0.5px solid #e1e4e8;
+    border-radius: .25rem .25rem 0 0;
+    border-bottom: 0;
+}
+
+.issue-list-head {
+    position: relative;
+    padding: 12px;
+    min-width: 100%;
+    font-size: 13px;
+    line-height: 1.4;
+    border-bottom: 1px solid #e5e5e5;
+    background-color: #f6f8fa;
+    /*        border: 1px solid #e1e4e8;*/
+}
+
+.issue-list-content {
+    position: relative;
+    padding: 12px;
+    min-width: 100%;
+    font-size: 12px;
+    line-height: 12px;
+    border-bottom: 1px solid #e5e5e5;
+    background-color: #fff;
+}
+
+.issue-list-content:hover {
+    background: #f6f8fa
+}
+
+a.issue-list {
+    padding: 0 0 0 15px;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 14px;
+    color: #586069;
+    text-decoration: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-bottom: 0;
+}
+
+a.issue-list:hover {
+    text-decoration: none;
+    color: black;
+}
+
+.footer {
+    position: relative;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    margin-top: 40px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #586069;
+    border-top: 1px solid #eaecef;
+}
+
+.issue-list-filter .drp-hold {
+    right: 0px;
+}
+
+.drp-hold {
+    position: absolute;
+    z-index: 30;
+}
+
+.filter-down {
+    position: relative;
+    width: 300px;
+    margin-top: 4px;
+    overflow: hidden;
+    font-size: 12px;
+    color: #586069;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    border-radius: 3px;
+    box-shadow: 0 3px 12px rgba(27, 31, 35, 0.15);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    max-width: 300px;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content .item {
+    display: block;
+    padding: 8px 8px 8px 30px;
+    overflow: hidden;
+    color: inherit;
+    cursor: pointer;
+    border-bottom: 1px solid #eaecef;
+}
+
+.dropdown-content .item:hover {
+    background-color: #0366d6;
+    color: white;
+}
+
+.dropdown-content a.item {
+    text-decoration: none;
+}
+
+.show {
+    display: block !important;
+}
+
+.drp-trigger:hover .dropdown-content {
+    display: block;
+    z-index: 999;
+}
+
+.issue-list-head .drp-trig {
+    right: -75%;
+    position: relative;
+}
+
+.drp-wrap {
+    position: absolute;
+    z-index: 30;
+    display: none;
+}
+
+.dropbtn {
+    cursor: pointer;
+}
+
+.filter-head {
+    padding: 8px 10px;
+    line-height: 16px;
+    background: #f6f8fa;
+    border-bottom: 1px solid #e1e4e8;
+}
+
+.label-bug {
+    background-color: #ee0701;
+}
+
+.label-duplicate {
+    background-color: #cccccc
+}
+
+.label-enhancement {
+    background-color: #84b6eb
+}
+
+.label-help-wanted {
+    background-color: #128A0C
+}
+
+.label-invalid {
+    background-color: #e6e6e6
+}
+
+.label-question {
+    background-color: #cc317c
+}
+
+.label-wontfix {
+    color: grey !important;
+    background-color: #ffffff
+}
+
+.label-block {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-right: 2px;
+    margin-bottom: 2px;
+    vertical-align: middle;
+    border-radius: 3px;
+}
