@@ -1,0 +1,84 @@
+<div class="container" style=" margin-top:12px;">
+    <!--    COLUMN FOR USER IMAGE-->
+    <div class="column"><img style=" vertical-align: middle;    padding: 3px;    border-radius: 5px;" height="50" src="https://avatars3.githubusercontent.com/u/867840?v=4&amp;s=60" width="50">
+        <!-- COLUMN FOR WRITE BOX-->
+    </div>
+    <div class="column write-box-wrap" style="width:70%; padding: 0">
+        <form name="commentForm" novalidate="true" ng-submit="newIssueScope.addIssue()">
+            <div style="padding: 10px;">
+                <input ng-model="newIssueScope.newIssue.title" class="write-box-input form-control input-block" type="text" placeholder="Title" required>
+            </div>
+
+            <div>
+
+                <div class="tabnav" style="padding:0 10px;border-bottom: 1px solid #d1d5da;">
+
+                    <div class="float-right" style="padding-top: 5px; display:-webkit-inline-box">
+                        <div class="widget-holder">
+                            <a class="write-box-widget-btn pointer">
+                                <span class="octicon octicon-text-size"></span>
+                            </a>
+                            <a class="write-box-widget-btn pointer">
+                                <span class="octicon octicon-bold"></span>
+                            </a>
+                            <a class="write-box-widget-btn pointer">
+                                <span class="octicon octicon-italic"></span>
+                            </a>
+                        </div>
+                        <div class="widget-holder">
+                            <a class="write-box-widget-btn pointer">
+                                <span class="octicon octicon-quote"></span>
+                            </a>
+                            <a class="write-box-widget-btn pointer">
+                                <span class="octicon octicon-code"></span>
+                            </a>
+                            <a class="write-box-widget-btn pointer">
+                                <span class="octicon octicon-link"></span>
+                            </a>
+                        </div>
+                        <div class="widget-holder">
+                            <a class="write-box-widget-btn pointer">
+                                <span class="octicon octicon-list-unordered"></span>
+                            </a>
+                            <a class="write-box-widget-btn pointer">
+                                <span class="octicon octicon-list-ordered"></span>
+                            </a>
+                            <a class="write-box-widget-btn pointer">
+                                <span class="octicon octicon-tasklist"></span>
+                            </a>
+                        </div>
+                        <div class="widget-holder">
+                            <a class="write-box-widget-btn pointer">
+                                <span class="octicon octicon-mail-reply"></span>
+                            </a>
+                            <a class="write-box-widget-btn pointer">
+                                <span class="octicon octicon-mention"></span>
+                            </a>
+                            <a class="write-box-widget-btn pointer">
+                                <span class="octicon octicon-bookmark"></span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <nav class="tabnav-tabs">
+                        <a href="#" class="tabnav-tab selected">Write</a>
+                        <a href="#" class="tabnav-tab">Preview</a>
+                    </nav>
+                </div>
+                <div style="padding: 0 10px 10px 10px;">
+                    <textarea ng-model="newIssueScope.newIssue.comment" rows="15" class="form-control write-box-input input-block" placeholder="Leave a comment"></textarea>
+                </div>
+                <div style="padding:0px 10px 10px 10px; line-height: 32px; font-size: 12px;" class="form-actions">
+                    <span class="octicon octicon-markdown v-align-bottom" style="font-size: 12px;line-height: inherit"></span> Styling with Markdown is supported
+
+                    <button type="submit" ng-disabled="commentForm.$invalid" class="btn btn-primary">Submit new issue</button>
+                    <button ng-click="newIssueScope.cancelIssue()" class="btn">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!--    COLUMN FOR DROP DOWNS-->
+    <div class="column one-fifth">
+        <div ng-include src="'templates/issue-new-Filter.html'"></div>
+    </div>
+</div>

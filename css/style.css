@@ -103,6 +103,7 @@ a.issue-list:hover {
 }
 
 .drp-hold {
+    margin-bottom: 20px;
     position: absolute;
     z-index: 30;
 }
@@ -187,6 +188,7 @@ a.issue-list:hover {
 }
 
 .label-bug {
+    color: white;
     background-color: #ee0701;
 }
 
@@ -223,4 +225,100 @@ a.issue-list:hover {
     margin-bottom: 2px;
     vertical-align: middle;
     border-radius: 3px;
+}
+
+.write-box-wrap {
+    position: relative;
+    /*    padding: 10px;*/
+    background-color: #fff;
+    border: 1px solid #d1d5da;
+    border-radius: 3px;
+}
+
+.write-box-widget-btn {
+    background: none;
+    padding: 4px 2px;
+    color: #586069;
+    border: 0;
+}
+
+.write-box-widget-btn:active {
+    border: 0
+}
+
+.widget-holder {
+    padding: 0 10px;
+}
+
+textarea.write-box-input {
+    resize: vertical;
+}
+
+.write-box-input {
+    background: #fafbfc !important;
+}
+
+.write-box-input:focus {
+    background: white !important;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.new-filter-head {
+    margin-left: 20px;
+    width: 100%;
+    margin-top: 20px;
+    padding-top: 20px;
+    font-size: 12px;
+    line-height: 16px;
+}
+
+.new-filter-head span {
+    font-weight: 600
+}
+
+.new-filter-head+.new-filter-head {
+    margin-top: 15px;
+    border-top: 1px solid #e6ebf1;
+}
+
+.new-filter-head .drp-hold {
+    right: 0px;
+}
+
+.label-selected {
+    font-weight: 600;
+    padding: 3px;
+    border-radius: 3px;
+    margin: 4px 0px;
+}
+
+.select-icon-left {
+    float: left;
+    margin-left: -20px;
+}
+
+.select-icon-right {
+    float: right;
+    margin-right: 1px;
+}
+
+.clear-filter {
+    cursor: pointer;
+}
+
+.clear-filter a {
+    color: #586069;
+}
+
+.clear-filter:hover {
+    color: blue;
+    text-decoration: none;
+}
+
+.clear-filter a:hover {
+    color: blue;
+    text-decoration: none;
 }

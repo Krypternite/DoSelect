@@ -125,6 +125,7 @@ angular.module('doSelectApp.services', [])
                     objectStore.openCursor().onsuccess = function (e) {
                         var cursor = e.target.result;
                         if (cursor) {
+                            cursor.value["key"] = cursor.key;
                             openIssues.push(cursor.value);
                             cursor.continue();
 
@@ -154,6 +155,39 @@ angular.module('doSelectApp.services', [])
                     transaction.oncomplete = function (event) {
                         resolve(closedIssues);
                     };
+                });
+            },
+            addIssue: function (issueObj) {
+                var openDatabase = this.openDatabase;
+                return $q(function (resolve, reject) {
+                    openDatabase().then(function () {
+
+                        var transaction = db.transaction(["openIssues"], "readwrite");
+                        var objectStore = transaction.objectStore("openIssues");
+
+                        var request = objectStore.add(issueObj);
+
+
+                        request.onerror = function (e) {
+                            console.log("Error", e.target.error.name);
+                            reject({
+                                state: false,
+                                Reason: e,
+                                Statement: 'Could not add the issue'
+                            })
+                            //some type of error handler
+                        }
+
+                        request.onsuccess = function (e) {
+                            resolve("Added");
+                        }
+                    }, function (error) {
+                        reject({
+                            state: false,
+                            Reason: error,
+                            Statement: 'Could not open the database.'
+                        });
+                    })
                 });
             }
         }

@@ -4,7 +4,7 @@
         <span class="octicon octicon-triangle-down v-align-middle text-gray" style="font-size: 13px;"></span>
     </button>
     <form class="subnav-search float-left" style="margin-left: -2px;">
-        <input class="form-control form-control subnav-search-input input-contrast " ng-model="issueScopeData.filterModel" placeholder="Search all issues" type="text">
+        <input class="form-control form-control subnav-search-input input-contrast " ng-model="issueScopeData.filterModel" ng-enter="issueScopeData.processFiltersInput()" placeholder="Search all issues" type="text">
 
     </form>
 
@@ -12,15 +12,19 @@
         <a class=" subnav-item" data-selected-links="repo_labels /StylishThemes/GitHub-Dark/labels">Milestones</a></div>
 
     <div style="float:right">
-        <button class="btn btn-primary" type="button">New Issue</button>
+        <button ng-click="issueScopeData.newIssue()" class="btn btn-primary" type="button">New Issue</button>
     </div>
 
 </div>
 <br>
+<div ng-click="issueScopeData.resetFilter()" ng-show="issueScopeData.filtersSet()" class="container clear-filter" style="font-weight: 600">
+    <a><span class="octicon octicon-x issues-reset-query-icon"></span> Clear current search query, filters, and sorts</a>
+</div>
+<br ng-show="issueScopeData.filtersSet()">
 <div class="container issue-container">
     <div ng-include src="'templates/issueFilter.html'"></div>
     <!--|filter : issueScopeData.issueFilters.author-->
-    <div class="issue-list-content " ng-repeat="issue in issueScopeData.openIssueList  |labelFilter : issueScopeData.issueFilters | orderBy : issueScopeData.issueFilters.sort.sortParam ">
+    <div class="issue-list-content " ng-repeat="issue in filteredList = (issueScopeData.openIssueList  |labelFilter : issueScopeData.issueFilters | orderBy : issueScopeData.issueFilters.sort.sortParam )">
         <div style="display: inline-table; ">
             <span class="octicon octicon-issue-opened text-green "></span>
         </div>
@@ -32,14 +36,20 @@
                ng-attr-title="Label:{{label.title}} ">{{label.title}}</a>
             </span>
             <br>
-            <div style=" font-size: 12px; padding-top: 5px; ">#{{issue.serial}} opened on {{issue.date | date:'MMM yy'}} by {{issue.author}} </div>
+            <div style=" font-size: 12px; padding-top: 5px; ">
+                #{{issue.key}} opened on {{issue.date | date:'MMM yy'}} by {{issue.author}}
+            </div>
 
         </div>
         <div class="float-right "><span class="octicon octicon-comment v-align-middle "></span> {{issue.comments.length}} </div>
 
     </div>
 
-
+    <div ng-show="filteredList.length === 0" class="blankslate" style="padding: 80px 40px;">
+        <span class="mega-octicon octicon-issue-opened blankslate-icon"></span>
+        <h3>No results matched your search.</h3>
+        <p>Use the links above to find what you’re looking for, or try a new search query. The Filters menu is also super helpful for quickly finding issues most relevant to you.</p>
+    </div>
 
 
 </div>
