@@ -59,11 +59,12 @@ angular.module('doSelectApp.controllers', [])
             return filteredRows;
         }
     })
-    .controller('issueListCtrl', function ($scope, $location, issueService, $timeout) {
+    .controller('issueListCtrl', function ($scope, $location, issueFactory, $timeout) {
+        //Object for non-scope related data
         var issueConfigData = {
             getOpenIssues: function () {
-                issueService.openDatabase().then(function () {
-                    issueService.getOpenIssues().then(function (openIssueList) {
+                issueFactory.openDatabase().then(function () {
+                    issueFactory.getOpenIssues().then(function (openIssueList) {
                         console.log(openIssueList.length);
                         console.log(openIssueList);
                         if (openIssueList.length) {
@@ -84,8 +85,8 @@ angular.module('doSelectApp.controllers', [])
                 });
             },
             getClosedIssues: function () {
-                issueService.openDatabase().then(function () {
-                    issueService.getClosedIssues().then(function (closedIssueList) {
+                issueFactory.openDatabase().then(function () {
+                    issueFactory.getClosedIssues().then(function (closedIssueList) {
                         if (closedIssueList.length) {
                             closedIssueList.forEach(function (item) {
                                 $scope.issueScopeData.closedIssueList.push(item);
@@ -97,18 +98,8 @@ angular.module('doSelectApp.controllers', [])
                 }, function (err) {
                     console.log(err)
                 });
-            }
-        };
-        $scope.author = false;
-        $scope.issueScopeData = {
-            filterModel: 'is:issue is:open',
-            newIssue: function () {
-                $location.path('/newIssue')
             },
-            openIssueList: [],
-            closedIssueList: [],
-            authorsList: [],
-            contains: function (datasetArray, filterObject, type) {
+            checkContains: function (datasetArray, filterObject, type) {
                 var i, property = "";
                 switch (type) {
                     case 'label':
@@ -123,116 +114,32 @@ angular.module('doSelectApp.controllers', [])
 
                 return false;
             },
-            filterModelUpdate: function (value, type) {
+            updateFilterModel: function (value, type) {
+                var filterModelData = $scope.issueScopeData.filterModel;
                 if (value.split(" ").length > 1) {
                     value = '"' + value + '"';
                 }
-                 var temp = "";
-                    if (this.filterModel.indexOf(type+":" + value) < 0) {
-                        temp = this.filterModel.split(' '+type+':' + value).join('') + " "+type+":" + value;
-                    } else {
-                        temp = this.filterModel.split(' '+type+':' + value).join('');
-                    }
-                    this.filterModel = temp;
-                
-               /* if (type === 'author') {
-                    if (this.filterModel.indexOf("author:" + value) < 0)
-                        this.filterModel = this.filterModel.split(' author:'+value).join('') + " author:" + value;
-                    else
-                        this.filterModel = this.filterModel.split(' author:'+value).join('');
-                } else if (type === 'assignee') {
-                    if (value.length > 0)
-                        this.filterModel = this.filterModel.split(' assignee:'+value).join('') + " assignee:" + value;
-                    else
-                        this.filterModel = this.filterModel.split(' assignee:'+value).join('');
-                    this.filterModel = temp.concat("assignee:" + value);
-                } else if (type === 'label') {
-                    var temp = "";
-                    if (this.filterModel.indexOf("label:" + value) < 0) {
-                        temp = this.filterModel.split(' label:' + value).join('') + " label:" + value;
-                    } else {
-                        temp = this.filterModel.split(' label:' + value).join('');
-                    }
-                    this.filterModel = temp;
-                } else if (type === 'sort') {
-                    var temp = this.filterModel.split(' sort:' + value).join('') + " sort:" + value;
-                    this.filterModel = temp;
-                }*/
-
+                var temp = "";
+                if (filterModelData.indexOf(type + ":" + value) < 0) {
+                    temp = filterModelData.split(' ' + type + ':' + value).join('') + " " + type + ":" + value;
+                } else {
+                    temp = filterModelData.split(' ' + type + ':' + value).join('');
+                }
+                $scope.issueScopeData.filterModel = angular.copy(temp);
             },
-            sortList: angular.copy(window.sortList),
-            filtersSet: function () {
-                if ((this.issueFilters.author.length > 0) || (this.issueFilters.labels.length > 0) || (this.issueFilters.assignee.length > 0))
+            checkFiltersSet: function () {
+                var issueFilters = angular.copy($scope.issueScopeData.issueFilters);
+                if ((issueFilters.author.length > 0) || (issueFilters.labels.length > 0) || (issueFilters.assignee.length > 0))
                     return true;
-                else if (!(this.issueFilters.sort.code === window.sortList[0].code)) {
+                else if (!(issueFilters.sort.code === window.sortList[0].code)) {
                     return true;
                 } else
                     return false;
             },
-            resetFilter: function () {
-                this.issueFilters = {
-                    authorFilterModel: '',
-                    labelFilterModel: '',
-                    author: '',
-                    labels: [],
-                    assignee: '',
-                    sort: window.sortList[0],
-                }
-                //                this.filtersSet = false;
-                this.filterModel = "is:issue is:open"
-            },
-            sortSelect: function (sortObj) {
-                // this.filtersSet = true;
-                this.issueFilters.sort = angular.copy(sortObj);
-                this.filterModelUpdate(sortObj.desc, 'sort')
-
-            },
-            authorSelect: function (author) {
-                // this.filtersSet = true;
-                this.issueFilters.authorFilterModel = '';
-                this.issueFilters.author =   this.issueFilters.author === author ? '' :author;
-               this.filterModelUpdate(author, 'author')
-            },
-            assigneeSelect: function (assignee) {
-                // this.filtersSet = true;
-                this.issueFilters.assigneeFilterModel = '';
-                this.issueFilters.assignee = this.issueFilters.assignee === assignee? '' :assignee;
-                this.filterModelUpdate(assignee, 'assignee')
-            },
-            labelSelect: function (label) {
-                // this.filtersSet = true;
-                this.issueFilters.labelFilterModel = '';
-                if (this.issueFilters.labels.filter(function (e) {
-                        return e.code == label.code
-                    }).length <= 0) {
-                    this.issueFilters.labels.push(label);
-                } else {
-                    this.issueFilters.labels = this.issueFilters.labels.filter(function (labelObj) {
-                        return labelObj.code !== label.code;
-                    })
-                }
-                this.filterModelUpdate(label.title, 'label')
-            },
-            issueFilters: {
-                authorFilterModel: '',
-                labelFilterModel: '',
-                author: '',
-                labels: [],
-                assignee: '',
-                sort: window.sortList[0],
-            },
-            labelsList: angular.copy(labelArr),
-            toggleMenu: function (menuName) {
-                switch (menuName) {
-                    case 'author':
-
-                        $scope.author = !$scope.author;
-                        break;
-                }
-            },
             processFiltersInput: function () {
-                var filterText = this.filterModel;
-                var m;
+                var filterText = angular.copy($scope.issueScopeData.filterModel);
+                var issueFilters = angular.copy($scope.issueScopeData.issueFilters);
+                issueFilters.labels = [];
                 var re_is = /(?:^|is):([a-zA-Z]+)/gm;
                 var re_label1 = /(?:^|label):([a-zA-Z]+\\?)/gm;
                 var re_label2 = /(?:^|label):(\")(.*?)(\")/gm;
@@ -241,11 +148,12 @@ angular.module('doSelectApp.controllers', [])
                 var re_sort = /(?:^|sort):([a-zA-Z]+\\?-[a-zA-Z]+\\?)/gm;
                 var re_ass1 = /(?:^|assignee):([a-zA-Z]+\\?)/gm;
                 var re_ass2 = /(?:^|assignee):(\")(.*?)(\")/gm;
-                var is = "";
-                var label = [];
-                var auth = "";
-                var sort = "";
-                var ass = "";
+                var m,
+                    is = "",
+                    label = [],
+                    auth = "",
+                    sort = "",
+                    ass = "";
                 while ((m = re_auth1.exec(filterText)) != null) {
                     if (m.index === re_auth1.lastIndex) {
                         re_auth1.lastIndex++;
@@ -295,39 +203,125 @@ angular.module('doSelectApp.controllers', [])
                 }
 
 
-                this.issueFilters.author = auth;
-                this.issueFilters.assignee = ass;
-                if(sort.length >0)
-                    this.sortList.forEach(function (item) {
+                issueFilters.author = auth;
+                issueFilters.assignee = ass;
+                if (sort.length > 0)
+                    $scope.issueScopeData.sortList.forEach(function (item) {
                         if (item.desc === sort) {
-                            $scope.issueScopeData.issueFilters.sort = item;
+                            issueFilters.sort = item;
                         }
                     });
                 else
-                    $scope.issueScopeData.issueFilters.sort =  this.sortList[0];
-                
+                    $scope.issueScopeData.issueFilters.sort = $scope.issueScopeData.sortList[0];
+
                 if (label.length > 0) {
                     label.forEach(function (item) {
                         $scope.issueScopeData.labelsList.forEach(function (labelObj) {
                             if (labelObj.title === item)
-                                $scope.issueScopeData.issueFilters.labels.push(labelObj);
+                                issueFilters.labels.push(labelObj);
                         })
 
                     })
-                }else{
-                    $scope.issueScopeData.issueFilters.labels = label;
+                } else {
+                    issueFilters.labels = label;
                 }
-                //this.issueFilters.sort = auth = "";
-                console.log(auth, sort, ass, label);
+
+                /*Assign all the filter to the issueFilter object on the scope*/
+
+                $scope.issueScopeData.issueFilters.author = angular.copy(issueFilters.author);
+                $scope.issueScopeData.issueFilters.assignee = angular.copy(issueFilters.assignee);
+                $scope.issueScopeData.issueFilters.sort = angular.copy(issueFilters.sort);
+                $scope.issueScopeData.issueFilters.labels = angular.copy(issueFilters.labels);
+
+
 
 
             }
         };
+        $scope.author = false;
+        $scope.issueScopeData = {
+            filterModel: 'is:issue is:open',
+            newIssue: function () {
+                $location.path('/newIssue')
+            },
+            openIssueList: [],
+            closedIssueList: [],
+            authorsList: [],
+            labelsList: angular.copy(labelArr),
+            issueFilters: {
+                authorFilterModel: '',
+                labelFilterModel: '',
+                author: '',
+                labels: [],
+                assignee: '',
+                sort: window.sortList[0],
+            },
+            contains: function (datasetArray, filterObject, type) {
+                return issueConfigData.checkContains(datasetArray, filterObject, type);
+            },
+            filterModelUpdate: function (value, type) {
+                issueConfigData.updateFilterModel(value, type);
+
+            },
+            sortList: angular.copy(window.sortList),
+            filtersSet: function () {
+                return issueConfigData.checkFiltersSet();
+            },
+            resetFilter: function () {
+                this.issueFilters = {
+                    authorFilterModel: '',
+                    labelFilterModel: '',
+                    author: '',
+                    labels: [],
+                    assignee: '',
+                    sort: window.sortList[0],
+                }
+                //                this.filtersSet = false;
+                this.filterModel = "is:issue is:open"
+            },
+            sortSelect: function (sortObj) {
+                // this.filtersSet = true;
+                this.issueFilters.sort = angular.copy(sortObj);
+                this.filterModelUpdate(sortObj.desc, 'sort')
+
+            },
+            authorSelect: function (author) {
+                // this.filtersSet = true;
+                this.issueFilters.authorFilterModel = '';
+                this.issueFilters.author = this.issueFilters.author === author ? '' : author;
+                this.filterModelUpdate(author, 'author')
+            },
+            assigneeSelect: function (assignee) {
+                // this.filtersSet = true;
+                this.issueFilters.assigneeFilterModel = '';
+                this.issueFilters.assignee = this.issueFilters.assignee === assignee ? '' : assignee;
+                this.filterModelUpdate(assignee, 'assignee')
+            },
+            labelSelect: function (label) {
+                // this.filtersSet = true;
+                this.issueFilters.labelFilterModel = '';
+                if (this.issueFilters.labels.filter(function (e) {
+                        return e.code == label.code
+                    }).length <= 0) {
+                    this.issueFilters.labels.push(label);
+                } else {
+                    this.issueFilters.labels = this.issueFilters.labels.filter(function (labelObj) {
+                        return labelObj.code !== label.code;
+                    })
+                }
+                this.filterModelUpdate(label.title, 'label')
+            },
+            processFiltersInput: function () {
+                issueConfigData.processFiltersInput();
+            }
+        };
+        //load open issues
         issueConfigData.getOpenIssues();
+        //load closed issues
         issueConfigData.getClosedIssues()
     })
 
-    .controller('newIssueCtrl', function ($scope, $location, issueService) {
+    .controller('newIssueCtrl', function ($scope, $location, issueFactory) {
         var newIssueConfig = {};
         $scope.newIssueScope = {
             authorsList: angular.copy(setupJSON.authors),
@@ -412,7 +406,7 @@ angular.module('doSelectApp.controllers', [])
                     date: new Date().toISOString(),
                     author: 'Superman'
                 })
-                issueService.addIssue(this.newIssue).then(function (issueSubmit) {
+                issueFactory.addIssue(this.newIssue).then(function (issueSubmit) {
                         console.log(issueSubmit);
                         $location.path("/");
                     },

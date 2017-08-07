@@ -1,7 +1,7 @@
 var app = angular.module('doSelectApp', ['ngRoute', 'doSelectApp.controllers', 'doSelectApp.services']);
-app.run(function ($rootScope, issueService) {
-    issueService.openDatabase().then(function () {
-        issueService.setupIndexedDb(setupJSON).then(function (data) {
+app.run(function ($rootScope, issueFactory) {
+    issueFactory.openDatabase().then(function () {
+        issueFactory.setupIndexedDb(setupJSON).then(function (data) {
             console.log("SETUP", data);
         }, function (error) {
             console.log(error);
@@ -18,7 +18,6 @@ app.directive('ngEnter', function () {
                 scope.$apply(function () {
                     scope.$eval(attrs.ngEnter);
                 });
-
                 event.preventDefault();
             }
         });
@@ -35,13 +34,6 @@ app.config(function ($routeProvider, $locationProvider) {
             templateUrl: "templates/issue-new.html",
             controller: 'newIssueCtrl'
         })
-        /*
-            .when("/green", {
-                templateUrl: "green.htm"
-            })
-            .when("/blue", {
-                templateUrl: "blue.htm"
-            })*/
         .otherwise({
             templateUrl: "templates/issue-list.html",
             controller: 'issueListCtrl'

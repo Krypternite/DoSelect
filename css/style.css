@@ -1,324 +1,480 @@
-/* Custom Stylesheet */
-
-
-/**
+        /* Custom Stylesheet */
+        /**
  * Use this file to override Materialize files so you can update
  * the core Materialize files in the future
  *
  * Made By MaterializeCSS.com
  */
-
-body {
-    overflow-x: hidden;
-}
-
-.icon-block {
-    padding: 0 15px;
-}
-
-.icon-block .material-icons {
-    font-size: inherit;
-}
-
-.brand-logo {
-    float: left;
-    margin: -1px 15px -1px -2px;
-    color: white;
-    white-space: nowrap;
-}
-
-.octicon {
-    fill: currentColor;
-}
-
-.header {
-    z-index: 1;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    color: rgba(255, 255, 255, 0.75);
-    background-color: #24292e;
-}
-
-.issue-container {
-    border: 0.5px solid #e1e4e8;
-    border-radius: .25rem .25rem 0 0;
-    border-bottom: 0;
-}
-
-.issue-list-head {
-    position: relative;
-    padding: 12px;
-    min-width: 100%;
-    font-size: 13px;
-    line-height: 1.4;
-    border-bottom: 1px solid #e5e5e5;
-    background-color: #f6f8fa;
-    /*        border: 1px solid #e1e4e8;*/
-}
-
-.issue-list-content {
-    position: relative;
-    padding: 12px;
-    min-width: 100%;
-    font-size: 12px;
-    line-height: 12px;
-    border-bottom: 1px solid #e5e5e5;
-    background-color: #fff;
-}
-
-.issue-list-content:hover {
-    background: #f6f8fa
-}
-
-a.issue-list {
-    padding: 0 0 0 15px;
-    display: inline-block;
-    font-size: 14px;
-    line-height: 14px;
-    color: #586069;
-    text-decoration: none;
-    background-color: transparent;
-    border: 1px solid transparent;
-    border-bottom: 0;
-}
-
-a.issue-list:hover {
-    text-decoration: none;
-    color: black;
-}
-
-.footer {
-    position: relative;
-    padding-top: 40px;
-    padding-bottom: 40px;
-    margin-top: 40px;
-    font-size: 12px;
-    line-height: 1.5;
-    color: #586069;
-    border-top: 1px solid #eaecef;
-}
-
-.issue-list-filter .drp-hold {
-    right: 0px;
-}
-
-.drp-hold {
-    margin-bottom: 20px;
-    position: absolute;
-    z-index: 30;
-}
-
-.filter-down {
-    position: relative;
-    width: 300px;
-    margin-top: 4px;
-    overflow: hidden;
-    font-size: 12px;
-    color: #586069;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid rgba(27, 31, 35, 0.15);
-    border-radius: 3px;
-    box-shadow: 0 3px 12px rgba(27, 31, 35, 0.15);
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    max-width: 300px;
-    min-width: 160px;
-    overflow: auto;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-}
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-content .item {
-    display: block;
-    padding: 8px 8px 8px 30px;
-    overflow: hidden;
-    color: inherit;
-    cursor: pointer;
-    border-bottom: 1px solid #eaecef;
-}
-
-.dropdown-content .item:hover {
-    background-color: #0366d6;
-    color: white;
-}
-
-.dropdown-content a.item {
-    text-decoration: none;
-}
-
-.show {
-    display: block !important;
-}
-
-.drp-trigger:hover .dropdown-content {
-    display: block;
-    z-index: 999;
-}
-
-.issue-list-head .drp-trig {
-    right: -75%;
-    position: relative;
-}
-
-.drp-wrap {
-    position: absolute;
-    z-index: 30;
-    display: none;
-}
-
-.dropbtn {
-    cursor: pointer;
-}
-
-.filter-head {
-    padding: 8px 10px;
-    line-height: 16px;
-    background: #f6f8fa;
-    border-bottom: 1px solid #e1e4e8;
-}
-
-.label-bug {
-    color: white;
-    background-color: #ee0701;
-}
-
-.label-duplicate {
-    background-color: #cccccc
-}
-
-.label-enhancement {
-    background-color: #84b6eb
-}
-
-.label-help-wanted {
-    background-color: #128A0C
-}
-
-.label-invalid {
-    background-color: #e6e6e6
-}
-
-.label-question {
-    background-color: #cc317c
-}
-
-.label-wontfix {
-    color: grey !important;
-    background-color: #ffffff
-}
-
-.label-block {
-    display: inline-block;
-    width: 14px;
-    height: 14px;
-    margin-right: 2px;
-    margin-bottom: 2px;
-    vertical-align: middle;
-    border-radius: 3px;
-}
-
-.write-box-wrap {
-    position: relative;
-    /*    padding: 10px;*/
-    background-color: #fff;
-    border: 1px solid #d1d5da;
-    border-radius: 3px;
-}
-
-.write-box-widget-btn {
-    background: none;
-    padding: 4px 2px;
-    color: #586069;
-    border: 0;
-}
-
-.write-box-widget-btn:active {
-    border: 0
-}
-
-.widget-holder {
-    padding: 0 10px;
-}
-
-textarea.write-box-input {
-    resize: vertical;
-}
-
-.write-box-input {
-    background: #fafbfc !important;
-}
-
-.write-box-input:focus {
-    background: white !important;
-}
-
-.pointer {
-    cursor: pointer;
-}
-
-.new-filter-head {
-    margin-left: 20px;
-    width: 100%;
-    margin-top: 20px;
-    padding-top: 20px;
-    font-size: 12px;
-    line-height: 16px;
-}
-
-.new-filter-head span {
-    font-weight: 600
-}
-
-.new-filter-head+.new-filter-head {
-    margin-top: 15px;
-    border-top: 1px solid #e6ebf1;
-}
-
-.new-filter-head .drp-hold {
-    right: 0px;
-}
-
-.label-selected {
-    font-weight: 600;
-    padding: 3px;
-    border-radius: 3px;
-    margin: 4px 0px;
-}
-
-.select-icon-left {
-    float: left;
-    margin-left: -20px;
-}
-
-.select-icon-right {
-    float: right;
-    margin-right: 1px;
-}
-
-.clear-filter {
-    cursor: pointer;
-}
-
-.clear-filter a {
-    color: #586069;
-}
-
-.clear-filter:hover {
-    color: blue;
-    text-decoration: none;
-}
-
-.clear-filter a:hover {
-    color: blue;
-    text-decoration: none;
-}
+        
+        body {
+            overflow-x: hidden;
+        }
+        
+        .icon-block {
+            padding: 0 15px;
+        }
+        
+        .pointer {
+            cursor: pointer;
+        }
+        
+        .show {
+            display: block !important;
+        }
+        
+        .icon-block .material-icons {
+            font-size: inherit;
+        }
+        
+        .octicon {
+            fill: currentColor;
+        }
+        
+        .header {
+            z-index: 1;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            color: rgba(255, 255, 255, 0.75);
+            background-color: #24292e;
+        }
+        
+        .user-nav {
+            margin-right: -8px
+        }
+        
+        .protip {
+            margin-top: 20px;
+            text-align: center
+        }
+        /**ISSUE LIST*/
+        
+        .issue-container {
+            border: 0.5px solid #e1e4e8;
+            border-radius: .25rem .25rem 0 0;
+            border-bottom: 0;
+        }
+        
+        .issue-list-head {
+            position: relative;
+            padding: 12px;
+            min-width: 100%;
+            font-size: 13px;
+            line-height: 1.4;
+            border-bottom: 1px solid #e5e5e5;
+            background-color: #f6f8fa;
+            /*        border: 1px solid #e1e4e8;*/
+        }
+        
+        .issue-list-content {
+            position: relative;
+            padding: 12px;
+            min-width: 100%;
+            font-size: 12px;
+            line-height: 12px;
+            border-bottom: 1px solid #e5e5e5;
+            background-color: #fff;
+        }
+        
+        .issue-list-content:hover {
+            background: #f6f8fa
+        }
+        
+        a.issue-list {
+            padding: 0 0 0 15px;
+            display: inline-block;
+            font-size: 14px;
+            line-height: 14px;
+            color: #586069;
+            text-decoration: none;
+            background-color: transparent;
+            border: 1px solid transparent;
+            border-bottom: 0;
+        }
+        
+        a.issue-list:hover {
+            text-decoration: none;
+            color: black;
+        }
+        
+        .issue-list-filter .drp-hold {
+            right: 0px;
+        }
+        /**DROPDOWN*/
+        
+        .drp-hold {
+            margin-bottom: 20px;
+            position: absolute;
+            z-index: 30;
+        }
+        
+        .filter-down {
+            position: relative;
+            width: 300px;
+            margin-top: 4px;
+            overflow: hidden;
+            font-size: 12px;
+            color: #586069;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid rgba(27, 31, 35, 0.15);
+            border-radius: 3px;
+            box-shadow: 0 3px 12px rgba(27, 31, 35, 0.15);
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            max-width: 300px;
+            min-width: 160px;
+            overflow: auto;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content .item {
+            display: block;
+            padding: 8px 8px 8px 30px;
+            overflow: hidden;
+            color: inherit;
+            cursor: pointer;
+            border-bottom: 1px solid #eaecef;
+        }
+        
+        .dropdown-content .item:hover {
+            background-color: #0366d6;
+            color: white;
+        }
+        
+        .dropdown-content a.item {
+            text-decoration: none;
+        }
+        
+        .drp-trigger:hover .dropdown-content {
+            display: block;
+            z-index: 999;
+        }
+        
+        .issue-list-head .drp-trig {
+            right: -75%;
+            position: relative;
+        }
+        
+        .drp-wrap {
+            position: absolute;
+            z-index: 30;
+            display: none;
+        }
+        
+        .dropbtn {
+            cursor: pointer;
+        }
+        
+        .filter-head {
+            padding: 8px 10px;
+            line-height: 16px;
+            background: #f6f8fa;
+            border-bottom: 1px solid #e1e4e8;
+        }
+        /****LABELS*****/
+        
+        .label-bug {
+            color: white;
+            background-color: #ee0701;
+        }
+        
+        .label-duplicate {
+            background-color: #cccccc
+        }
+        
+        .label-enhancement {
+            background-color: #84b6eb
+        }
+        
+        .label-help-wanted {
+            background-color: #128A0C
+        }
+        
+        .label-invalid {
+            background-color: #e6e6e6
+        }
+        
+        .label-question {
+            background-color: #cc317c
+        }
+        
+        .label-wontfix {
+            color: grey !important;
+            background-color: #ffffff
+        }
+        
+        .label-block {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            margin-right: 2px;
+            margin-bottom: 2px;
+            vertical-align: middle;
+            border-radius: 3px;
+        }
+        /***NEW ISSUE*/
+        
+        .write-box-wrap {
+            position: relative;
+            /*    padding: 10px;*/
+            background-color: #fff;
+            border: 1px solid #d1d5da;
+            border-radius: 3px;
+        }
+        
+        .write-box-widget-btn {
+            background: none;
+            padding: 4px 2px;
+            color: #586069;
+            border: 0;
+        }
+        
+        .write-box-widget-btn:active {
+            border: 0
+        }
+        
+        .widget-holder {
+            padding: 0 10px;
+        }
+        
+        textarea.write-box-input {
+            resize: vertical;
+        }
+        
+        .write-box-input {
+            background: #fafbfc !important;
+        }
+        
+        .write-box-input:focus {
+            background: white !important;
+        }
+        
+        .new-filter-head {
+            margin-left: 20px;
+            width: 100%;
+            margin-top: 20px;
+            padding-top: 20px;
+            font-size: 12px;
+            line-height: 16px;
+        }
+        
+        .new-filter-head span {
+            font-weight: 600
+        }
+        
+        .new-filter-head+.new-filter-head {
+            margin-top: 15px;
+            border-top: 1px solid #e6ebf1;
+        }
+        
+        .new-filter-head .drp-hold {
+            right: 0px;
+        }
+        
+        .label-selected {
+            font-weight: 600;
+            padding: 3px;
+            border-radius: 3px;
+            margin: 4px 0px;
+        }
+        
+        .select-icon-left {
+            float: left;
+            margin-left: -20px;
+        }
+        
+        .select-icon-right {
+            float: right;
+            margin-right: 1px;
+        }
+        
+        .clear-filter {
+            cursor: pointer;
+        }
+        
+        .clear-filter a {
+            color: #586069;
+        }
+        
+        .clear-filter:hover {
+            color: blue;
+            text-decoration: none;
+        }
+        
+        .clear-filter a:hover {
+            color: blue;
+            text-decoration: none;
+        }
+        /**************************************HEADER CLASSES*********************************************/
+        
+        .header .header-search-scope {
+            font-size: inherit;
+            font-weight: 400;
+            line-height: 28px;
+            color: rgba(255, 255, 255, 0.75);
+            border-right-color: #282e34;
+        }
+        
+        .header .header-search-wrapper {
+            min-height: 30px;
+            font-size: inherit;
+            color: #fff;
+            background-color: rgba(255, 255, 255, 0.125);
+            border: 0;
+            box-shadow: none;
+        }
+        
+        .header-search-wrapper {
+            display: table;
+            width: 100%;
+            max-width: 100%;
+            min-height: 0;
+            padding: 0;
+            font-weight: normal;
+            vertical-align: middle;
+        }
+        
+        .header .header-search.scoped-search {
+            width: 300px;
+        }
+        
+        .header .header-search {
+            width: 200px;
+            font-size: 13px;
+        }
+        
+        .scoped-search .header-search-scope {
+            display: table-cell;
+        }
+        
+        .header-search-scope {
+            display: none;
+            width: 1%;
+            padding-right: 8px;
+            padding-left: 8px;
+            font-size: 12px;
+            color: #586069;
+            white-space: nowrap;
+            vertical-align: middle;
+            border-right: 1px solid #eaecef;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+        
+        .header .header-search-wrapper.focus {
+            background-color: rgba(255, 255, 255, 0.175);
+            box-shadow: none
+        }
+        
+        .header .header-search-wrapper.focus .header-search-scope {
+            color: #fff;
+            background-color: rgba(255, 255, 255, 0.075);
+            border-right-color: #282e34
+        }
+        
+        .header .header-search-input {
+            min-height: 30px;
+            font-size: inherit;
+            color: inherit;
+        }
+        
+        .header-search-input {
+            display: table-cell;
+            width: 99.999%;
+            min-height: 26px;
+            padding-top: 0;
+            padding-bottom: 0;
+            background: none;
+            border: 0;
+            box-shadow: none;
+        }
+        
+        .header-search-input:focus {
+            border: 0;
+            box-shadow: none;
+        }
+        
+        .header-logo-invertocat {
+            float: left;
+            margin: -1px 15px -1px -2px;
+            color: #fff;
+            white-space: nowrap
+        }
+        
+        .header-logo-invertocat .octicon-mark-github {
+            float: left
+        }
+        
+        .header-logo-invertocat:hover {
+            color: #fff;
+            text-decoration: none
+        }
+        
+        .header-navlink {
+            display: block;
+            padding-bottom: 3px;
+            margin: 5px 8px 0;
+            font-weight: 600;
+            line-height: 20px;
+            color: rgba(255, 255, 255, 0.75)
+        }
+        
+        .header-navlink:hover,
+        .header-navlink:focus {
+            color: #fff;
+            text-decoration: none
+        }
+        
+        .header-navlink.selected {
+            color: #fff
+        }
+        /**************************************FOOTER CLASSES*********************************************/
+        
+        .site-footer {
+            position: relative;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            margin-top: 40px;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #586069;
+            border-top: 1px solid #eaecef
+        }
+        
+        .site-footer .octicon-mark-github {
+            position: absolute;
+            top: 38px;
+            left: 50%;
+            margin-left: -12px;
+            font-size: 24px;
+            color: #c6cbd1
+        }
+        
+        .site-footer .octicon-mark-github:hover {
+            color: #959da5
+        }
+        
+        .site-footer-links {
+            margin: 0;
+            list-style: none
+        }
+        
+        .site-footer-links li {
+            display: inline-block;
+            line-height: 16px
+        }
+        
+        .site-footer-links li+li {
+            margin-left: 10px
+        }
+        /**************************************FOOTER CLASSES*********************************************/
