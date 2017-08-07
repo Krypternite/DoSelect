@@ -127,17 +127,25 @@ angular.module('doSelectApp.controllers', [])
                 if (value.split(" ").length > 1) {
                     value = '"' + value + '"';
                 }
-                if (type === 'author') {
-                    if (value.length > 0)
-                        this.filterModel = this.filterModel.split(/ author:\w+/).join('') + " author:" + value;
+                 var temp = "";
+                    if (this.filterModel.indexOf(type+":" + value) < 0) {
+                        temp = this.filterModel.split(' '+type+':' + value).join('') + " "+type+":" + value;
+                    } else {
+                        temp = this.filterModel.split(' '+type+':' + value).join('');
+                    }
+                    this.filterModel = temp;
+                
+               /* if (type === 'author') {
+                    if (this.filterModel.indexOf("author:" + value) < 0)
+                        this.filterModel = this.filterModel.split(' author:'+value).join('') + " author:" + value;
                     else
-                        this.filterModel = this.filterModel.split(/ author:\w+/).join('');
+                        this.filterModel = this.filterModel.split(' author:'+value).join('');
                 } else if (type === 'assignee') {
                     if (value.length > 0)
-                        this.filterModel = this.filterModel.split(/ author:\w+/).join('') + " assignee:" + value;
+                        this.filterModel = this.filterModel.split(' assignee:'+value).join('') + " assignee:" + value;
                     else
-                        this.filterModel = this.filterModel.split(/ assignee:\w+/).join('');
-                    this.filterModel = temp.concat(" assignee:" + value);
+                        this.filterModel = this.filterModel.split(' assignee:'+value).join('');
+                    this.filterModel = temp.concat("assignee:" + value);
                 } else if (type === 'label') {
                     var temp = "";
                     if (this.filterModel.indexOf("label:" + value) < 0) {
@@ -149,7 +157,7 @@ angular.module('doSelectApp.controllers', [])
                 } else if (type === 'sort') {
                     var temp = this.filterModel.split(' sort:' + value).join('') + " sort:" + value;
                     this.filterModel = temp;
-                }
+                }*/
 
             },
             sortList: angular.copy(window.sortList),
@@ -182,14 +190,14 @@ angular.module('doSelectApp.controllers', [])
             authorSelect: function (author) {
                 // this.filtersSet = true;
                 this.issueFilters.authorFilterModel = '';
-                this.issueFilters.author = this.issueFilters.author === author ? '' : author;
-                this.filterModelUpdate(this.issueFilters.author, 'author')
+                this.issueFilters.author =   this.issueFilters.author === author ? '' :author;
+               this.filterModelUpdate(author, 'author')
             },
             assigneeSelect: function (assignee) {
                 // this.filtersSet = true;
                 this.issueFilters.assigneeFilterModel = '';
-                this.issueFilters.assignee = this.issueFilters.assignee === assignee ? '' : assignee;
-                this.filterModelUpdate(this.issueFilters.assignee, 'assignee')
+                this.issueFilters.assignee = this.issueFilters.assignee === assignee? '' :assignee;
+                this.filterModelUpdate(assignee, 'assignee')
             },
             labelSelect: function (label) {
                 // this.filtersSet = true;

@@ -37,36 +37,43 @@ var sortList = [
         desc: 'updated-asc'
     }
 ];
-var labelArr = [{
+var labelArr = [
+    {
         title: "bug",
         css: 'label-bug',
         code: 'bg'
-}, {
+},
+    {
         title: "duplicate",
         css: 'label-duplicate',
         code: 'dp'
-}, {
+},
+    {
         title: "enhancement",
         css: 'label-enhancement',
         code: 'en'
-}, {
+},
+    {
         title: "help wanted",
         css: 'label-help-wanted',
         code: 'hw'
-    }, {
+    },
+    {
         title: "invalid",
         css: 'label-invalid',
         code: 'in'
-    }
-    , {
+    },
+    {
         title: "question",
         css: 'label-question',
         code: 'qn'
-    }, {
+    },
+    {
         title: "wontfix",
         css: 'label-wontfix',
         code: 'wf'
-    }];
+    }
+];
 var setupJSON = {
     authors: ["Batman", "Superman", "Tick", "Deadpool", "Spiderman", "Aquaman", "Wonder Woman"],
     openIssues: [
