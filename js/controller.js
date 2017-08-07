@@ -297,11 +297,15 @@ angular.module('doSelectApp.controllers', [])
 
                 this.issueFilters.author = auth;
                 this.issueFilters.assignee = ass;
-                this.sortList.forEach(function (item) {
-                    if (item.desc === sort) {
-                        $scope.issueScopeData.issueFilters.sort = item;
-                    }
-                });
+                if(sort.length >0)
+                    this.sortList.forEach(function (item) {
+                        if (item.desc === sort) {
+                            $scope.issueScopeData.issueFilters.sort = item;
+                        }
+                    });
+                else
+                    $scope.issueScopeData.issueFilters.sort =  this.sortList[0];
+                
                 if (label.length > 0) {
                     label.forEach(function (item) {
                         $scope.issueScopeData.labelsList.forEach(function (labelObj) {
@@ -310,6 +314,8 @@ angular.module('doSelectApp.controllers', [])
                         })
 
                     })
+                }else{
+                    $scope.issueScopeData.issueFilters.labels = label;
                 }
                 //this.issueFilters.sort = auth = "";
                 console.log(auth, sort, ass, label);
