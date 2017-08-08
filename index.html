@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.5.0/octicons.min.css">
     <script src="https://code.angularjs.org/1.5.0/angular.js"></script>
     <script src="https://code.angularjs.org/1.5.0/angular-route.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.js"></script>
     <script src="js/issues.json"></script>
     <script src="js/app.js"></script>
     <script src="js/controller.js"></script>
@@ -177,7 +178,8 @@
         </div>
     </div>
     <br>
-    <div ng-view></div>
+    <!--    <div ng-view></div>-->
+    <ui-view></ui-view>
     <div class="container">
         <div class="site-footer ">
             <ul class="site-footer-links float-right">

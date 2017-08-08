@@ -1,8 +1,9 @@
-var app = angular.module('doSelectApp', ['ngRoute', 'doSelectApp.controllers', 'doSelectApp.services']);
-app.run(function ($rootScope, issueFactory) {
+var app = angular.module('doSelectApp', ["ui.router", 'ngRoute', 'doSelectApp.controllers', 'doSelectApp.services']);
+app.run(function ($rootScope, issueFactory, $state) {
     issueFactory.openDatabase().then(function () {
         issueFactory.setupIndexedDb(setupJSON).then(function (data) {
             console.log("SETUP", data);
+            $state.go('app.issues')
         }, function (error) {
             console.log(error);
         })
@@ -23,19 +24,48 @@ app.directive('ngEnter', function () {
         });
     };
 });
-app.config(function ($routeProvider, $locationProvider) {
+app.config(function ($stateProvider, $urlRouterProvider) {
 
-    $routeProvider
-        .when("/", {
+    $stateProvider
+        .state('app', {
+            url: '/app',
+            abstract: true
+        })
+        .state('app.issues', {
+            url: '/Issues',
             templateUrl: "templates/issue-list.html",
             controller: 'issueListCtrl'
+
         })
-        .when("/newIssue", {
+        .state('app.newIssue', {
+            url: '/NewIssue',
             templateUrl: "templates/issue-new.html",
             controller: 'newIssueCtrl'
+
+
+        }).state('app.issueDetails', {
+            url: '/IssueDetails/:SR',
+            templateUrl: "templates/issue-detail.html",
+            controller: 'issueDetailCtrl'
+
         })
-        .otherwise({
-            templateUrl: "templates/issue-list.html",
-            controller: 'issueListCtrl'
-        });
+    $urlRouterProvider.otherwise('/Issues');
+
+    /*$routeProvider
+    .state("/", {
+        templateUrl: "templates/issue-list.html",
+        controller: 'issueListCtrl'
+    })
+    .state("/newIssue", {
+        templateUrl: "templates/issue-new.html",
+        controller: 'newIssueCtrl'
+    })
+    .state("/issueDetail:SR", {
+        templateUrl: "templates/issue-detail.html",
+        controller: 'issueDetailCtrl'
+    })
+    .otherwise({
+        templateUrl: "templates/issue-list.html",
+        controller: 'issueListCtrl'
+    });*/
 });

@@ -46,6 +46,12 @@
             margin-top: 20px;
             text-align: center
         }
+        
+        .no-hover:hover {
+            background: inherit !important;
+            color: inherit !important;
+            text-decoration: none !important;
+        }
         /**ISSUE LIST*/
         
         .issue-container {

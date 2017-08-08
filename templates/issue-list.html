@@ -29,7 +29,7 @@
             <span class="octicon octicon-issue-opened text-green "></span>
         </div>
         <div style="display: inline-table ; margin-left: 15px ; ">
-            <span style=" font-weight: 600; font-size: 16px ;color:#24292e "> {{issue.title}}</span>
+            <a ng-click="issueScopeData.issueDetails(issue)" style=" font-weight: 600; font-size: 16px ;color:#24292e" class="pointer link-gray-dark no-underline   "> {{issue.title}}</a>
             <span class="labels ">
                 <a ng-repeat="label in issue.labels "  href="# " class="label v-align-text-top " style="; margin: 0 2px; "  
                    ng-class="label.css"

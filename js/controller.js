@@ -59,7 +59,7 @@ angular.module('doSelectApp.controllers', [])
             return filteredRows;
         }
     })
-    .controller('issueListCtrl', function ($scope, $location, issueFactory, $timeout) {
+    .controller('issueListCtrl', function ($scope, $state, issueFactory, $timeout) {
         //Object for non-scope related data
         var issueConfigData = {
             getOpenIssues: function () {
@@ -242,7 +242,7 @@ angular.module('doSelectApp.controllers', [])
         $scope.issueScopeData = {
             filterModel: 'is:issue is:open',
             newIssue: function () {
-                $location.path('/newIssue')
+                $state.go('app.newIssue')
             },
             openIssueList: [],
             closedIssueList: [],
@@ -313,6 +313,11 @@ angular.module('doSelectApp.controllers', [])
             },
             processFiltersInput: function () {
                 issueConfigData.processFiltersInput();
+            },
+            issueDetails: function (issue) {
+                $state.go("app.issueDetails", {
+                    SR: issue.key
+                })
             }
         };
         //load open issues
@@ -321,7 +326,7 @@ angular.module('doSelectApp.controllers', [])
         issueConfigData.getClosedIssues()
     })
 
-    .controller('newIssueCtrl', function ($scope, $location, issueFactory) {
+    .controller('newIssueCtrl', function ($scope, $state, issueFactory) {
         var newIssueConfig = {};
         $scope.newIssueScope = {
             authorsList: angular.copy(setupJSON.authors),
@@ -360,7 +365,7 @@ angular.module('doSelectApp.controllers', [])
                 comment: '',
                 date: new Date().toISOString(),
                 details: '',
-                author: 'Superman',
+                author: user,
                 labels: [],
                 updDate: new Date().toISOString(),
                 comments: []
@@ -401,21 +406,56 @@ angular.module('doSelectApp.controllers', [])
                 this.newIssue.labels = this.issueFilters.labels;
                 this.newIssue.assignee = this.issueFilters.assignee;
 
-                this.newIssue.comments.push({
-                    text: this.newIssue.comment,
-                    date: new Date().toISOString(),
-                    author: 'Superman'
-                })
+                /* this.newIssue.comments.push({
+     text: this.newIssue.comment,
+     date: new Date().toISOString(),
+     author: user
+ })*/
                 issueFactory.addIssue(this.newIssue).then(function (issueSubmit) {
                         console.log(issueSubmit);
-                        $location.path("/");
+                        $state.go("app.issues");
                     },
                     function (err) {
                         console.log(err);
                     })
             },
             cancelIssue: function () {
-                $location.path("/");
+                $state.go("app.issues");
             }
         };
+    })
+    .controller('issueDetailCtrl', function ($scope, $stateParams, issueFactory) {
+        console.log($stateParams.SR);
+        var issueDetailConfig = {
+            getIssueDetails: function () {
+                issueFactory.getIssue($stateParams.SR, 'open').then(function (issueData) {
+                    console.log("ISSUE DETAILS", issueData);
+                    $scope.issueDetailScope.issueDetails = angular.copy(issueData);
+                });
+            },
+            submitComment: function (key, commentObj) {
+                issueFactory.submitComment(key, commentObj).then(function () {
+                    issueDetailConfig.getIssueDetails($stateParams.SR, 'open');
+                }, function (err) {
+                    console.log(err);
+                });
+            }
+        };
+        $scope.issueDetailScope = {
+            issueDetails: {},
+            cancelIssue: function () {
+                $state.go('app.issues');
+            },
+            newComment: {
+                text: "",
+                author: user,
+                date: new Date().toISOString()
+            },
+            submitComment: function () {
+                issueDetailConfig.submitComment(this.issueDetails.id, this.newComment);
+            }
+        };
+
+        issueDetailConfig.getIssueDetails();
+
     })

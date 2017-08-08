@@ -1,5 +1,6 @@
 var db, setUp = false,
-    shouldInit = false;
+    shouldInit = false,
+    user = "Superman";
 angular.module('doSelectApp.services', [])
     .factory('issueFactory', function ($q) {
         return {
@@ -31,6 +32,9 @@ angular.module('doSelectApp.services', [])
                                 keyPath: "id",
                                 autoIncrement: true
                             });
+                            objectStore.createIndex("openKey", "key", {
+                                unique: true
+                            });
                             objectStore.createIndex("openIssueTitle", "title", {
                                 unique: false
                             });
@@ -41,6 +45,9 @@ angular.module('doSelectApp.services', [])
                             objectStore = thisDb.createObjectStore("closedIssues", {
                                 keyPath: "id",
                                 autoIncrement: true
+                            });
+                            objectStore.createIndex("closedKey", "key", {
+                                unique: true
                             });
                             objectStore.createIndex("closedIssueTitle", "title", {
                                 unique: false
@@ -195,6 +202,100 @@ angular.module('doSelectApp.services', [])
                             Statement: 'Could not open the database.'
                         });
                     })
+                });
+            },
+            getIssue: function (id, type) {
+                var openDatabase = this.openDatabase;
+                return $q(function (resolve, reject) {
+                    openDatabase().then(function () {
+                            var objStore = type === 'open' ? 'openIssues' : 'closedIssues';
+                            var transaction = db.transaction([objStore], "readwrite");
+                            var objectStore = transaction.objectStore(objStore);
+
+
+                            var request = objectStore.get(Number.parseInt(id));
+                            request.onerror = function (event) {
+                                console.dir(event);
+                                console.log("Error getting the data");
+                                reject({
+                                    State: 'false',
+                                    Reason: event,
+                                    Statement: 'The Db could not be opened.'
+                                });
+                            };
+
+                            request.onsuccess = function (event) {
+                                console.log(request.result);
+                                resolve(request.result)
+                            };
+
+
+
+
+                        },
+                        function (error) {
+                            reject({
+                                state: false,
+                                Reason: error,
+                                Statement: 'Could not open the database.'
+                            });
+                        })
+                });
+            },
+            submitComment: function (id, commentObj) {
+                var openDatabase = this.openDatabase;
+                return $q(function (resolve, reject) {
+                    openDatabase().then(function () {
+                            var objStore = 'openIssues';
+                            var transaction = db.transaction([objStore], "readwrite");
+                            var objectStore = transaction.objectStore(objStore);
+                            var issueObject = {};
+
+                            var request = objectStore.get(Number.parseInt(id));
+                            request.onerror = function (event) {
+                                console.dir(event);
+                                console.log("Error getting the data");
+                                reject({
+                                    State: 'false',
+                                    Reason: event,
+                                    Statement: 'The Db could not be opened.'
+                                });
+                            };
+
+                            request.onsuccess = function (event) {
+                                issueObject = request.result;
+                                issueObject.updDate = new Date().toISOString();
+                                issueObject.comments.push(commentObj);
+                                var transaction2 = db.transaction([objStore], "readwrite");
+                                var objectStore2 = transaction2.objectStore(objStore);
+                                var request2 = objectStore2.put(issueObject);
+
+                                request2.onerror = function (event) {
+                                    console.dir(event);
+                                    console.log("Error getting the data");
+                                    reject({
+                                        State: 'false',
+                                        Reason: event,
+                                        Statement: 'The Db could not be opened.'
+                                    });
+                                };
+
+                                request2.onsuccess = function (event) {
+                                    resolve();
+                                };
+                            };
+
+
+
+
+                        },
+                        function (error) {
+                            reject({
+                                state: false,
+                                Reason: error,
+                                Statement: 'Could not open the database.'
+                            });
+                        })
                 });
             }
         }
