@@ -52,6 +52,10 @@
             color: inherit !important;
             text-decoration: none !important;
         }
+        
+        .comment-box {
+            white-space: pre-wrap;
+        }
         /*PRELOADER*/
         
         .loader {

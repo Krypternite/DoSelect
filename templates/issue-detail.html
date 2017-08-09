@@ -35,7 +35,7 @@
 
                     </div>
                 </div>
-                <div class="issue-list-content no-hover">{{issueDetailScope.issueDetails.details}} </div>
+                <div class="issue-list-content no-hover comment-box">{{issueDetailScope.issueDetails.details}} </div>
             </div>
         </div>
         <!--   COMMENTS START-->
@@ -47,7 +47,7 @@
             </div>
 
 
-            <div class="column write-box-wrap text-gray" style="width:70%; padding: 0; border-bottom: 0">
+            <div class="column write-box-wrap text-gray " style="width:70%; padding: 0; border-bottom: 0">
                 <div class="issue-list-head"><strong>{{comment.author}}</strong> commented on {{comment.date| date:'MMM dd, yyyy'}}
                     <div class="float-right">
 
@@ -55,7 +55,7 @@
 
                     </div>
                 </div>
-                <div class="issue-list-content no-hover">{{comment.text}}</div>
+                <div class="issue-list-content no-hover comment-box">{{comment.text}}</div>
             </div>
         </div>
 

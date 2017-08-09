@@ -409,7 +409,7 @@ angular.module('doSelectApp.controllers', [])
                     var labelSplit2 = /label:\".*?\"/gm;
                     this.filterModel = this.filterModel.split(labelSplit1).join("").trim();
                     this.filterModel = this.filterModel.split(labelSplit2).join("").trim();
-                    this.filterModelUpdate("label", "no", null);
+                    this.filterModelUpdate("label", "no", "");
 
                 } else {
                     if (this.issueFilters.noLabel) {
@@ -427,7 +427,7 @@ angular.module('doSelectApp.controllers', [])
                         });
 
                     }
-                    this.filterModelUpdate(label.title, 'label', null);
+                    this.filterModelUpdate(label.title, 'label', "");
                 }
 
 
