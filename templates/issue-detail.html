@@ -10,31 +10,138 @@
     <div class="column ">
         <span class="state  State--green">
             <span class="octicon octicon-issue-opened"></span>
-        <span>Open</span>
+            <span>Open</span>
         </span>
 
     </div>
-    <div class="text-gray pb-3"><a class="pointer link-gray "><strong>{{issueDetailScope.issueDetails.author}}</strong></a> opened this issue on {{issueDetailScope.issueDetails.date | date:'MMM dd, yyyy'}} . {{issueDetailScope.issueDetails.comments.length}} comments</div>
+    <div class="text-gray pb-3"><a class="pointer link-gray "><strong>{{issueDetailScope.issueDetails.author}}</strong></a> opened this issue on {{issueDetailScope.issueDetails.date| date:'MMM dd, yyyy'}} . {{issueDetailScope.issueDetails.comments.length}} comments</div>
     <hr>
 </div>
 <!--    FIRST BOX IS ISSUE DETAILS-->
 <div class="container" style=" margin-top:12px;">
     <!--    COLUMN FOR USER IMAGE-->
-    <div class="column">
-        <img style=" vertical-align: middle;    padding: 3px;    border-radius: 5px;" height="50" src="https://avatars3.githubusercontent.com/u/867840?v=4&amp;s=60" width="50">
-        <!-- COLUMN FOR WRITE BOX-->
-    </div>
+    <div class="column four-fifths">
+        <div class="container">
+            <div class="column">
+                <img style=" vertical-align: middle;    padding: 3px;    border-radius: 5px;" height="50" src="https://avatars3.githubusercontent.com/u/867840?v=4&amp;s=60" width="50">
+                <!-- COLUMN FOR WRITE BOX-->
+            </div>
 
 
-    <div class="column write-box-wrap text-gray" style="width:70%; padding: 0; border-bottom: 0">
-        <div class="issue-list-head"><strong>{{issueDetailScope.issueDetails.author}}</strong> commented on {{issueDetailScope.issueDetails.date | date:'MMM dd, yyyy'}}
-            <div class="float-right">
+            <div class="column write-box-wrap text-gray" style="width:70%; padding: 0; border-bottom: 0">
+                <div class="issue-list-head"><strong>{{issueDetailScope.issueDetails.author}}</strong> commented on {{issueDetailScope.issueDetails.date| date:'MMM dd, yyyy'}}
+                    <div class="float-right">
 
-                <span class="border p-2" style="border-radius: 10%; font-weight: 600">Owner</span>
+                        <span class="border p-2" style="border-radius: 10%; font-weight: 600">Owner</span>
 
+                    </div>
+                </div>
+                <div class="issue-list-content no-hover">{{issueDetailScope.issueDetails.details}} </div>
             </div>
         </div>
-        <div class="issue-list-content no-hover">{{issueDetailScope.issueDetails.details}} </div>
+        <!--   COMMENTS START-->
+        <div ng-repeat="comment in issueDetailScope.issueDetails.comments| orderBy : 'date'" class="container d-inline-block" style=" margin-top:12px;">
+            <!--    COLUMN FOR USER IMAGE-->
+            <div class="column">
+                <img style=" vertical-align: middle;    padding: 3px;    border-radius: 5px;" height="50" src="https://avatars3.githubusercontent.com/u/867840?v=4&amp;s=60" width="50">
+                <!-- COLUMN FOR WRITE BOX-->
+            </div>
+
+
+            <div class="column write-box-wrap text-gray" style="width:70%; padding: 0; border-bottom: 0">
+                <div class="issue-list-head"><strong>{{comment.author}}</strong> commented on {{comment.date| date:'MMM dd, yyyy'}}
+                    <div class="float-right">
+
+                        <span class="border p-2" ng-if="comment.author === issueDetailScope.issueDetails.author" style="border-radius: 10%; font-weight: 600">Owner</span>
+
+                    </div>
+                </div>
+                <div class="issue-list-content no-hover">{{comment.text}}</div>
+            </div>
+        </div>
+
+
+        <!--COMMENT BOX-->
+
+
+        <div class="container d-inline-block" style=" margin-top:12px;">
+            <!--    COLUMN FOR USER IMAGE-->
+            <div class="column"><img style=" vertical-align: middle;    padding: 3px;    border-radius: 5px;" height="50" src="https://avatars3.githubusercontent.com/u/867840?v=4&amp;s=60" width="50">
+                <!-- COLUMN FOR WRITE BOX-->
+            </div>
+            <div class="column write-box-wrap" style="width:70%; padding: 10px 0 ;">
+                <form name="commentForm" novalidate="true" ng-submit="issueDetailScope.submitComment()">
+                    <div>
+
+                        <div class="tabnav" style="padding:0 10px;border-bottom: 1px solid #d1d5da;">
+
+                            <div class="float-right" style="padding-top: 5px; display:-webkit-inline-box">
+                                <div class="widget-holder">
+                                    <a class="write-box-widget-btn pointer no-underline">
+                                        <span class="octicon octicon-text-size"></span>
+                                    </a>
+                                    <a class="write-box-widget-btn pointer no-underline">
+                                        <span class="octicon octicon-bold"></span>
+                                    </a>
+                                    <a class="write-box-widget-btn pointer no-underline">
+                                        <span class="octicon octicon-italic"></span>
+                                    </a>
+                                </div>
+                                <div class="widget-holder">
+                                    <a class="write-box-widget-btn pointer no-underline">
+                                        <span class="octicon octicon-quote"></span>
+                                    </a>
+                                    <a class="write-box-widget-btn pointer no-underline">
+                                        <span class="octicon octicon-code"></span>
+                                    </a>
+                                    <a class="write-box-widget-btn pointer no-underline">
+                                        <span class="octicon octicon-link"></span>
+                                    </a>
+                                </div>
+                                <div class="widget-holder">
+                                    <a class="write-box-widget-btn pointer no-underline">
+                                        <span class="octicon octicon-list-unordered"></span>
+                                    </a>
+                                    <a class="write-box-widget-btn pointer no-underline">
+                                        <span class="octicon octicon-list-ordered"></span>
+                                    </a>
+                                    <a class="write-box-widget-btn pointer no-underline">
+                                        <span class="octicon octicon-tasklist"></span>
+                                    </a>
+                                </div>
+                                <div class="widget-holder">
+                                    <a class="write-box-widget-btn pointer no-underline">
+                                        <span class="octicon octicon-mail-reply"></span>
+                                    </a>
+                                    <a class="write-box-widget-btn pointer no-underline">
+                                        <span class="octicon octicon-mention"></span>
+                                    </a>
+                                    <a class="write-box-widget-btn pointer no-underline">
+                                        <span class="octicon octicon-bookmark"></span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <nav class="tabnav-tabs">
+                                <a href="#" class="tabnav-tab selected">Write</a>
+                                <a href="#" class="tabnav-tab">Preview</a>
+                            </nav>
+                        </div>
+                        <div style="padding: 0 10px 10px 10px;">
+                            <textarea required ng-model="issueDetailScope.newComment.text" rows="15" class="form-control write-box-input input-block" placeholder="Leave a comment"></textarea>
+                        </div>
+                        <div style="padding:0px 10px 10px 10px; line-height: 32px; font-size: 12px;" class="form-actions">
+                            <span class="octicon octicon-markdown v-align-bottom" style="font-size: 12px;line-height: inherit"></span> Styling with Markdown is supported
+
+                            <button type="submit" ng-disabled="commentForm.$invalid" class="btn btn-primary">Submit new issue</button>
+                            <button ng-click="issueDetailScope.cancelIssue()" class="btn">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!--    COLUMN FOR DROP DOWNS-->
+
+        </div>
     </div>
     <div class="column one-fifth">
         <!--ASSIGNEE DIV-->
@@ -63,106 +170,5 @@
         </div>
 
 
-    </div>
-    <!--   COMMENTS START-->
-    <div ng-repeat="comment in issueDetailScope.issueDetails.comments | orderBy : 'date'" class="container" style=" margin-top:12px;">
-        <!--    COLUMN FOR USER IMAGE-->
-        <div class="column">
-            <img style=" vertical-align: middle;    padding: 3px;    border-radius: 5px;" height="50" src="https://avatars3.githubusercontent.com/u/867840?v=4&amp;s=60" width="50">
-            <!-- COLUMN FOR WRITE BOX-->
-        </div>
-
-
-        <div class="column write-box-wrap text-gray" style="width:70%; padding: 0; border-bottom: 0">
-            <div class="issue-list-head"><strong>{{comment.author}}</strong> commented on {{comment.date | date:'MMM dd, yyyy'}}
-                <div class="float-right">
-
-                    <span class="border p-2" ng-if="comment.author === issueDetailScope.issueDetails.author" style="border-radius: 10%; font-weight: 600">Owner</span>
-
-                </div>
-            </div>
-            <div class="issue-list-content no-hover">{{comment.text}}</div>
-        </div>
-    </div>
-
-
-    <!--COMMENT BOX-->
-
-    <div class="container" style=" margin-top:12px;">
-        <!--    COLUMN FOR USER IMAGE-->
-        <div class="column"><img style=" vertical-align: middle;    padding: 3px;    border-radius: 5px;" height="50" src="https://avatars3.githubusercontent.com/u/867840?v=4&amp;s=60" width="50">
-            <!-- COLUMN FOR WRITE BOX-->
-        </div>
-        <div class="column write-box-wrap" style="width:70%; padding: 10px 0 ;">
-            <form name="commentForm" novalidate="true" ng-submit="issueDetailScope.submitComment()">
-                <div>
-
-                    <div class="tabnav" style="padding:0 10px;border-bottom: 1px solid #d1d5da;">
-
-                        <div class="float-right" style="padding-top: 5px; display:-webkit-inline-box">
-                            <div class="widget-holder">
-                                <a class="write-box-widget-btn pointer no-underline">
-                                    <span class="octicon octicon-text-size"></span>
-                                </a>
-                                <a class="write-box-widget-btn pointer no-underline">
-                                    <span class="octicon octicon-bold"></span>
-                                </a>
-                                <a class="write-box-widget-btn pointer no-underline">
-                                    <span class="octicon octicon-italic"></span>
-                                </a>
-                            </div>
-                            <div class="widget-holder">
-                                <a class="write-box-widget-btn pointer no-underline">
-                                    <span class="octicon octicon-quote"></span>
-                                </a>
-                                <a class="write-box-widget-btn pointer no-underline">
-                                    <span class="octicon octicon-code"></span>
-                                </a>
-                                <a class="write-box-widget-btn pointer no-underline">
-                                    <span class="octicon octicon-link"></span>
-                                </a>
-                            </div>
-                            <div class="widget-holder">
-                                <a class="write-box-widget-btn pointer no-underline">
-                                    <span class="octicon octicon-list-unordered"></span>
-                                </a>
-                                <a class="write-box-widget-btn pointer no-underline">
-                                    <span class="octicon octicon-list-ordered"></span>
-                                </a>
-                                <a class="write-box-widget-btn pointer no-underline">
-                                    <span class="octicon octicon-tasklist"></span>
-                                </a>
-                            </div>
-                            <div class="widget-holder">
-                                <a class="write-box-widget-btn pointer no-underline">
-                                    <span class="octicon octicon-mail-reply"></span>
-                                </a>
-                                <a class="write-box-widget-btn pointer no-underline">
-                                    <span class="octicon octicon-mention"></span>
-                                </a>
-                                <a class="write-box-widget-btn pointer no-underline">
-                                    <span class="octicon octicon-bookmark"></span>
-                                </a>
-                            </div>
-                        </div>
-
-                        <nav class="tabnav-tabs">
-                            <a href="#" class="tabnav-tab selected">Write</a>
-                            <a href="#" class="tabnav-tab">Preview</a>
-                        </nav>
-                    </div>
-                    <div style="padding: 0 10px 10px 10px;">
-                        <textarea required ng-model="issueDetailScope.newComment.text" rows="15" class="form-control write-box-input input-block" placeholder="Leave a comment"></textarea>
-                    </div>
-                    <div style="padding:0px 10px 10px 10px; line-height: 32px; font-size: 12px;" class="form-actions">
-                        <span class="octicon octicon-markdown v-align-bottom" style="font-size: 12px;line-height: inherit"></span> Styling with Markdown is supported
-
-                        <button type="submit" ng-disabled="commentForm.$invalid" class="btn btn-primary">Submit new issue</button>
-                        <button ng-click="issueDetailScope.cancelIssue()" class="btn">Cancel</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <!--    COLUMN FOR DROP DOWNS-->
 
     </div>
