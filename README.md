@@ -1,6 +1,6 @@
 # DoSelect FrontEnd Task
 
-TASK : TO MIMIC GITHUB ISSUES AS MUCH AS POSSIBLE
+*TASK : TO MIMIC GITHUB ISSUES AS MUCH AS POSSIBLE*
 
 + The application has been made to mimic Github Issues.
 
