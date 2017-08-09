@@ -427,6 +427,7 @@ angular.module('doSelectApp.controllers', [])
                         });
 
                     }
+                    
                     this.filterModelUpdate(label.title, 'label', "");
                 }
 
