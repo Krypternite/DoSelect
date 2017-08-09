@@ -1,3 +1,4 @@
+<!--TOP CONTAINER-->
 <div class="container">
 
     <button class="btn" type="button" style="float: left">Filters
@@ -9,7 +10,8 @@
     </form>
 
     <div class="column"> <a class=" subnav-item" data-selected-links="repo_labels /StylishThemes/GitHub-Dark/labels">Labels</a>
-        <a class=" subnav-item" data-selected-links="repo_labels /StylishThemes/GitHub-Dark/labels">Milestones</a></div>
+        <a class=" subnav-item" data-selected-links="repo_labels /StylishThemes/GitHub-Dark/labels">Milestones</a>
+    </div>
 
     <div style="float:right">
         <button ng-click="issueScopeData.newIssue()" class="btn btn-primary" type="button">New Issue</button>
@@ -17,11 +19,14 @@
 
 </div>
 <br>
+<!--CLEAR FILTERS BAR-->
 <div ng-click="issueScopeData.resetFilter()" ng-show="issueScopeData.filtersSet()" class="container clear-filter" style="font-weight: 600">
     <a><span class="octicon octicon-x issues-reset-query-icon"></span> Clear current search query, filters, and sorts</a>
 </div>
 <br ng-show="issueScopeData.filtersSet()">
+<!--ISSUE LISTING STARTS-->
 <div class="container issue-container">
+    <!--INCLUDE FOR THE HEADER OF THE ISSUE LISTING TABLE-->
     <div ng-include src="'templates/issueFilter.html'"></div>
     <!--|filter : issueScopeData.issueFilters.author-->
     <div class="issue-list-content " ng-repeat="issue in filteredList = (issueScopeData.openIssueList  |issueFilter : issueScopeData.issueFilters | orderBy : issueScopeData.issueFilters.sort.sortParam )">
@@ -44,7 +49,7 @@
         <div class="float-right "><span class="octicon octicon-comment v-align-middle "></span> {{issue.comments.length}} </div>
 
     </div>
-
+    <!--BLANKSLATE TO SHOW WHEN FILTERED DATA IS 0-->
     <div ng-show="filteredList.length === 0" class="blankslate" style="padding: 80px 40px;">
         <span class="mega-octicon octicon-issue-opened blankslate-icon"></span>
         <h3>No results matched your search.</h3>
@@ -53,6 +58,7 @@
 
 
 </div>
+<!--FINAL FOOTER FOR THIS STATE-->
 <div class="protip ">
     <span class="octicon octicon-light-bulb text-gray "></span>
     <strong>ProTip!</strong> Adding <a href="# ">no:label</a> will show everything without a label.

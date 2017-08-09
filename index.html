@@ -17,6 +17,7 @@
 </head>
 
 <body ng-app="doSelectApp">
+    <!--HEADER-->
     <div class="header">
         <div class="container">
             <div class="d-flex flex-justify-between">
@@ -111,6 +112,7 @@
             </div>
         </div>
     </div>
+    <!--WHITESPACE AND TABS-->
     <div class="blankslate" style="padding: 18px;  padding-bottom: 0px;">
         <div class="container">
             <div class="column">
@@ -142,13 +144,14 @@
                     </div>
                 </div>
             </div>
+            <!--TAB NAVIGATION STARTS-->
             <div class="container">
                 <div class="column">
                     <div class="tabnav left" style="border:0; margin: 0; margin-top: 15px;">
                         <nav class="tabnav-tabs">
                             <a class="tabnav-tab pointer " style="padding:7px 15px 12px;">
                                 <span class="octicon octicon-code"></span> Code</a>
-                            <a class="tabnav-tab pointer selected" style=" padding: 7px 15px 12px; border-top: #e36209  solid;">
+                            <a class="tabnav-tab pointer selected" ui-sref="app.issues" style=" padding: 7px 15px 12px; border-top: #e36209  solid;">
 
                                 <span class="octicon octicon-issue-opened"></span> Issues
                                 <span class="Counter">9</span>
@@ -179,8 +182,9 @@
         </div>
     </div>
     <br>
-    <!--    <div ng-view></div>-->
+    <!--ANGULAR TEMPLATES INJECTED HERE-->
     <ui-view></ui-view>
+    <!--FOOTER-->
     <div class="container">
         <div class="site-footer ">
             <ul class="site-footer-links float-right">
@@ -196,6 +200,7 @@
                 <span class="octicon octicon-mark-github">
                 </span>
             </a>
+
             <ul class="site-footer-links">
                 <li> &copy; 2017 <span title="0.29530s from unicorn-4267823882-lp56b">GitHub</span>, Inc.</li>
                 <li><a class="pointer">Terms</a></li>

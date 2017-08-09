@@ -10,7 +10,7 @@
     <div class="column ">
         <span class="state  State--green">
             <span class="octicon octicon-issue-opened"></span>
-            <span>Open</span>
+        <span>Open</span>
         </span>
 
     </div>
@@ -24,10 +24,9 @@
         <div class="container">
             <div class="column">
                 <img style=" vertical-align: middle;    padding: 3px;    border-radius: 5px;" height="50" src="https://avatars3.githubusercontent.com/u/867840?v=4&amp;s=60" width="50">
-                <!-- COLUMN FOR WRITE BOX-->
             </div>
 
-
+            <!--USERS DETAILS OF THE ISSUE-->
             <div class="column write-box-wrap text-gray" style="width:70%; padding: 0; border-bottom: 0">
                 <div class="issue-list-head"><strong>{{issueDetailScope.issueDetails.author}}</strong> commented on {{issueDetailScope.issueDetails.date| date:'MMM dd, yyyy'}}
                     <div class="float-right">
@@ -158,7 +157,7 @@
             <div ng-if="issueDetailScope.issueDetails.assignee.length == 0" style="margin-top:10px;font-size:10px;">None one</div>
 
         </div>
-
+        <!--LABEL DIV-->
         <div onclick="drpTest('drp_new_lbl')" class="dropdown dropbtn new-filter-head">
             <span class="dropbtn dont-close octicon octicon-gear " style="float:right"></span>
             <span class="dropbtn dont-close">Labels</span>
