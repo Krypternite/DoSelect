@@ -162,16 +162,35 @@ angular.module('doSelectApp.controllers', [])
                 return false;
             },
             //fn to update the filter text box with the various added or removed
-            updateFilterModel: function (value, type) {
+            updateFilterModel: function (value, type, oldValue) {
                 var filterModelData = $scope.issueScopeData.filterModel;
+                var temp = "";
+                var splitRegex1 = type + ":[a-zA-Z]+\\?";
+                var splitRegex2 = type + ":\".*?+\\?\"";
+                if (oldValue.split(" ").length > 1) {
+                    oldValue = '"' + oldValue + '"';
+                }
                 if (value.split(" ").length > 1) {
                     value = '"' + value + '"';
                 }
-                var temp = "";
-                if (filterModelData.indexOf(type + ":" + value) < 0) {
-                    temp = filterModelData.split(' ' + type + ':' + value).join('') + " " + type + ":" + value;
+
+                if (type !== 'label') {
+                    if (oldValue.length > 0) {
+                        temp = filterModelData.split(type + ":" + oldValue).join("").trim();
+                        if (value !== oldValue) {
+                            temp = temp + " " + type + ":" + value;
+                        }
+                    } else {
+                        temp = filterModelData + " " + type + ":" + value;
+                    }
+
                 } else {
-                    temp = filterModelData.split(' ' + type + ':' + value).join('');
+
+                    if (filterModelData.indexOf(type + ":" + value) < 0) {
+                        temp = filterModelData.split(' ' + type + ':' + value).join('') + " " + type + ":" + value;
+                    } else {
+                        temp = filterModelData.split(' ' + type + ':' + value).join('');
+                    }
                 }
                 $scope.issueScopeData.filterModel = angular.copy(temp);
             },
@@ -180,7 +199,7 @@ angular.module('doSelectApp.controllers', [])
                 var issueFilters = angular.copy($scope.issueScopeData.issueFilters);
                 if ((issueFilters.author.length > 0) || (issueFilters.labels.length > 0) || (issueFilters.assignee.length > 0))
                     return true;
-                else if (!(issueFilters.sort.code === window.sortList[0].code)) {
+                else if ($scope.issueScopeData.sortFiltersSet) {
                     return true;
                 } else
                     return false;
@@ -299,6 +318,8 @@ angular.module('doSelectApp.controllers', [])
         $scope.issueScopeData = {
             //model for the filter text box
             filterModel: 'is:issue is:open',
+            //Flag to check is filters have been set
+            sorFiltersSet: false,
             //fn to go add a new issue. Changes state to new Issue.
             newIssue: function () {
                 $state.go('app.newIssue')
@@ -328,8 +349,8 @@ angular.module('doSelectApp.controllers', [])
                 return issueConfigData.checkContains(datasetArray, filterObject, type);
             },
             //fn to update the text of the filters text box
-            filterModelUpdate: function (value, type) {
-                issueConfigData.updateFilterModel(value, type);
+            filterModelUpdate: function (value, type, oldValue) {
+                issueConfigData.updateFilterModel(value, type, oldValue);
 
             },
             //fn to check if any filters have been set
@@ -338,6 +359,7 @@ angular.module('doSelectApp.controllers', [])
             },
             //fn to reset the filter object
             resetFilter: function () {
+                this.sortFiltersSet = false;
                 this.issueFilters = {
                     authorFilterModel: '',
                     labelFilterModel: '',
@@ -352,24 +374,29 @@ angular.module('doSelectApp.controllers', [])
             },
             //fn called when a sort type is selected
             sortSelect: function (sortObj) {
-                // this.filtersSet = true;
-                this.issueFilters.sort = angular.copy(sortObj);
-                this.filterModelUpdate(sortObj.desc, 'sort')
+                this.sortFiltersSet = true;
+                var oldValue = this.issueFilters.sort.desc;
+
+                this.issueFilters.sort.code === sortObj.code ? (this.issueFilters.sort = window.sortList[0], this.sortFiltersSet = false) : (this.issueFilters.sort = sortObj);
+                this.filterModelUpdate(sortObj.desc, 'sort', oldValue)
 
             },
             //fn called when an author is selected
             authorSelect: function (author) {
-                // this.filtersSet = true;
+                var oldValue = this.issueFilters.author;
                 this.issueFilters.authorFilterModel = '';
                 this.issueFilters.author = this.issueFilters.author === author ? '' : author;
-                this.filterModelUpdate(author, 'author')
+                var authorSplit1 = /label:[a-zA-Z]+\\?/gm;
+
+                this.filterModelUpdate(author, 'author', oldValue);
             },
             //fn called when an assignee  is selected
             assigneeSelect: function (assignee) {
-                // this.filtersSet = true;
+
+                var oldValue = this.issueFilters.assignee;
                 this.issueFilters.assigneeFilterModel = '';
                 this.issueFilters.assignee = this.issueFilters.assignee === assignee ? '' : assignee;
-                this.filterModelUpdate(assignee, 'assignee')
+                this.filterModelUpdate(assignee, 'assignee', oldValue)
             },
             //fn called when a label type is selected
             labelSelect: function (label) {
@@ -382,7 +409,7 @@ angular.module('doSelectApp.controllers', [])
                     var labelSplit2 = /label:\".*?\"/gm;
                     this.filterModel = this.filterModel.split(labelSplit1).join("").trim();
                     this.filterModel = this.filterModel.split(labelSplit2).join("").trim();
-                    this.filterModelUpdate("label", "no");
+                    this.filterModelUpdate("label", "no", null);
 
                 } else {
                     if (this.issueFilters.noLabel) {
@@ -400,7 +427,7 @@ angular.module('doSelectApp.controllers', [])
                         });
 
                     }
-                    this.filterModelUpdate(label.title, 'label');
+                    this.filterModelUpdate(label.title, 'label', null);
                 }
 
 
