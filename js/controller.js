@@ -424,7 +424,7 @@ angular.module('doSelectApp.controllers', [])
         $timeout(function () {
             issueConfigData.getOpenIssues();
             $timeout(issueConfigData.getClosedIssues(), 500);
-        }, 800);
+        }, 0);
     })
     /*NEW ISSUE CONTROLLER, handles operations related to the new issue state*/
     .controller('newIssueCtrl', function ($scope, $state, issueFactory) {
