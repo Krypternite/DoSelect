@@ -569,6 +569,11 @@ angular.module('doSelectApp.controllers', [])
             submitComment: function (key, commentObj) {
                 issueFactory.submitComment(key, commentObj).then(function () {
                     issueDetailConfig.getIssueDetails($stateParams.SR, 'open');
+                    $scope.issueDetailScope.newComment = {
+                        text: "",
+                        author: user,
+                        date: new Date().toISOString()
+                    }
                 }, function (err) {
                     console.log(err);
                 });
@@ -586,6 +591,7 @@ angular.module('doSelectApp.controllers', [])
             },
             submitComment: function () {
                 issueDetailConfig.submitComment(this.issueDetails.id, this.newComment);
+
             }
         };
         issueDetailConfig.getIssueDetails();
