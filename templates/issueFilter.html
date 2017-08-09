@@ -1,192 +1,191 @@
 <div class="issue-list-head">
-	<div style="display: inline;">
-		<div style="display: inline-block; padding: 2px; font-size: 14px"><b><span class="octicon octicon-issue-opened"></span>&nbsp; {{issueScopeData.openIssueList.length}} Open</b></div>
-		<div style="display: inline-block; padding: 0 10px; font-size:14px">
-			<span class="octicon octicon-check" style="padding: 2px;"></span> {{issueScopeData.closedIssueList.length}} Closed</div>
-	</div>
-	<div class="issue-list-filter" style="display: inline;float:right">
-		<!--            AUTHOR FILTER -->
-		<div onclick="drpTest('drp_auth')" class=" dropbtn dropdown">
-			<a class="issue-list dropbtn dont-close ">
+    <div style="display: inline;">
+        <div style="display: inline-block; padding: 2px; font-size: 14px"><b><span class="octicon octicon-issue-opened"></span>&nbsp; {{issueScopeData.openIssueList.length}} Open</b></div>
+        <div style="display: inline-block; padding: 0 10px; font-size:14px">
+            <span class="octicon octicon-check" style="padding: 2px;"></span> {{issueScopeData.closedIssueList.length}} Closed</div>
+    </div>
+    <div class="issue-list-filter" style="display: inline;float:right">
+        <!--            AUTHOR FILTER -->
+        <div onclick="drpTest('drp_auth')" class=" dropbtn dropdown">
+            <a class="issue-list dropbtn dont-close ">
                         Author
                             <span class="dropbtn octicon octicon-triangle-down v-align-middle text-gray " style="font-size: 10px; "></span>
                          
                     </a>
-			<div id='drp_auth' class="drp-hold dropdown-content">
+            <div id='drp_auth' class="drp-hold dropdown-content">
 
-				<div class="filter-down">
-					<div class="filter-head">
-						<span class="octicon octicon-x js-menu-close" style="float:right"></span>
-						<span>Filter by author</span>
-					</div>
-					<div class="filter-head">
-						<span>
+                <div class="filter-down">
+                    <div class="filter-head">
+                        <span class="octicon octicon-x js-menu-close" style="float:right"></span>
+                        <span>Filter by author</span>
+                    </div>
+                    <div class="filter-head">
+                        <span>
                                 <input placeholder="Filter users" type="text" ng-model="issueScopeData.issueFilters.authorFilterModel" class="form-control dont-close input-block">
                             </span>
-					</div>
-					<a ng-style="issueScopeData.issueFilters.author === author && {'font-weight':600}" ng-click="issueScopeData.authorSelect(author)" ng-repeat="author in issueScopeData.authorsList | filter: issueScopeData.issueFilters.authorFilterModel" class="item">
-						<span ng-if="issueScopeData.issueFilters.author === author" style="line-height: 30px;" class=" octicon octicon-check select-icon-left "></span>
-						<div>
-							<img style=" vertical-align: middle;    padding: 3px;    border-radius: 5px;" height="30" src="https://avatars3.githubusercontent.com/u/867840?v=4&amp;s=60" width="30"> {{author}}
-						</div>
-					</a>
-					<a class="item" ng-if="issueScopeData.issueFilters.authorFilterModel.length > 0" ng-click="issueScopeData.authorSelect(issueScopeData.issueFilters.authorFilterModel)"><span style="font-weight: 600">
+                    </div>
+                    <a ng-style="issueScopeData.issueFilters.author === author && {'font-weight':600}" ng-click="issueScopeData.authorSelect(author)" ng-repeat="author in issueScopeData.authorsList | filter: issueScopeData.issueFilters.authorFilterModel" class="item">
+                        <span ng-if="issueScopeData.issueFilters.author === author" style="line-height: 30px;" class=" octicon octicon-check select-icon-left "></span>
+                        <div>
+                            <img style=" vertical-align: middle;    padding: 3px;    border-radius: 5px;" height="30" src="https://avatars3.githubusercontent.com/u/867840?v=4&amp;s=60" width="30"> {{author}}
+                        </div>
+                    </a>
+                    <a class="item" ng-if="issueScopeData.issueFilters.authorFilterModel.length > 0" ng-click="issueScopeData.authorSelect(issueScopeData.issueFilters.authorFilterModel)"><span style="font-weight: 600">
                         author:{{issueScopeData.issueFilters.authorFilterModel}}
                         </span>
                     <br>
                     Filter by this user</a>
-				</div>
-			</div>
-		</div>
+                </div>
+            </div>
+        </div>
 
-		<!--LABEL FILTER-->
-		<div onclick="drpTest('drp_lbl')" class="drpbtn dropdown">
-			<a class="issue-list dropbtn dont-close ">
+        <!--LABEL FILTER-->
+        <div onclick="drpTest('drp_lbl')" class="drpbtn dropdown">
+            <a class="issue-list dropbtn dont-close ">
                         Labels
                             <span class=" octicon octicon-triangle-down v-align-middle text-gray " style="font-size: 10px; "></span>
                          
                     </a>
-			<div id='drp_lbl' class="drp-hold dropdown-content">
+            <div id='drp_lbl' class="drp-hold dropdown-content">
 
-				<div class="filter-down">
-					<div class="filter-head">
-						<span class="octicon octicon-x" style="float:right"></span>
-						<span>Filter by label</span>
-					</div>
-					<div class="filter-head">
-						<span>
+                <div class="filter-down">
+                    <div class="filter-head">
+                        <span class="octicon octicon-x" style="float:right"></span>
+                        <span>Filter by label</span>
+                    </div>
+                    <div class="filter-head">
+                        <span>
                                 <input placeholder="Filter labels" type="text" ng-model="issueScopeData.issueFilters.labelFilterModel" class="form-control dont-close input-block">
                             </span>
-					</div>
+                    </div>
 
-					<a ng-click="issueScopeData.labelSelect('unlabled')" class="item">
+                    <a ng-click="issueScopeData.labelSelect('unlabeled')" class="item">
+                        <span ng-if="issueScopeData.issueFilters.noLabel" class=" octicon octicon-check select-icon-left "></span>
+                        <div style="font-weight: 600"> Unlabeled</div>
+                    </a>
 
+                    <a ng-click="issueScopeData.labelSelect(label)" ng-repeat="label in issueScopeData.labelsList | filter: issueScopeData.issueFilters.labelFilterModel" class="item">
+                        <span ng-if="issueScopeData.contains(issueScopeData.issueFilters.labels , label, 'label')" class=" octicon octicon-check select-icon-left "></span>
 
-						<div style="font-weight: 600"> Unlabeled</div>
-					</a>
-
-					<a ng-click="issueScopeData.labelSelect(label)" ng-repeat="label in issueScopeData.labelsList | filter: issueScopeData.issueFilters.labelFilterModel" class="item">
-						<span ng-if="issueScopeData.contains(issueScopeData.issueFilters.labels , label, 'label')" class=" octicon octicon-check select-icon-left "></span>
-
-						<div ng-style="issueScopeData.contains(issueScopeData.issueFilters.labels , label, 'label') && {'font-weight':600}"><span class="label-block" ng-class="label.css">&nbsp;</span> {{label.title}}</div>
-					</a>
-				</div>
-			</div>
-		</div>
-		<!--            PROJECT FILTER-->
-		<div onclick="drpTest('drp_prj')" class="dropbtn dropdown">
-			<a class="issue-list dropbtn dont-close ">
+                        <div ng-style="issueScopeData.contains(issueScopeData.issueFilters.labels , label, 'label') && {'font-weight':600}"><span class="label-block" ng-class="label.css">&nbsp;</span> {{label.title}}</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!--            PROJECT FILTER-->
+        <div onclick="drpTest('drp_prj')" class="dropbtn dropdown">
+            <a class="issue-list dropbtn dont-close ">
                         Projects
                             <span class=" octicon octicon-triangle-down v-align-middle text-gray " style="font-size: 10px; "></span>
                          
             </a>
-			<div id='drp_prj' class="drp-hold dropdown-content">
+            <div id='drp_prj' class="drp-hold dropdown-content">
 
-				<div class="filter-down">
-					<div class="filter-head">
-						<span class="octicon octicon-x js-menu-close" style="float:right"></span>
-						<span>Filter by projects</span>
-					</div>
-					<div class="filter-head">
-						<span>
+                <div class="filter-down">
+                    <div class="filter-head">
+                        <span class="octicon octicon-x js-menu-close" style="float:right"></span>
+                        <span>Filter by projects</span>
+                    </div>
+                    <div class="filter-head">
+                        <span>
                                     <input placeholder="Filter projects" ng-disabled="1" type="text" class="form-control dont-close input-block">
                                 </span>
-					</div>
-					<div class="tabnav" style="padding:8px 0px 0px 12px;">
-						<nav class="tabnav-tabs" > 
-							<a  style="padding: 0px 12px;" class="tabnav-tab selected pointer">Repository</a>
-							<a style="padding: 0px 12px;"  class="tabnav-tab pointer">Organisation</a>
-						</nav>
-					</div>
-					<div class="item">Nothing to show</div>
-				</div>
-			</div>
+                    </div>
+                    <div class="tabnav" style="padding:8px 0px 0px 12px;">
+                        <nav class="tabnav-tabs">
+                            <a style="padding: 0px 12px;" class="tabnav-tab selected pointer">Repository</a>
+                            <a style="padding: 0px 12px;" class="tabnav-tab pointer">Organisation</a>
+                        </nav>
+                    </div>
+                    <div class="item">Nothing to show</div>
+                </div>
+            </div>
 
-		</div>
+        </div>
 
-		<!--            MILESTONES FILTER-->
-		<div onclick="drpTest('drp_mlst')" class="dropdown">
-			<a class="issue-list dropbtn dont-close ">
+        <!--            MILESTONES FILTER-->
+        <div onclick="drpTest('drp_mlst')" class="dropdown">
+            <a class="issue-list dropbtn dont-close ">
                         Milestones
                             <span class=" octicon octicon-triangle-down v-align-middle text-gray " style="font-size: 10px; "></span>
                          
                     </a>
-			<div id='drp_mlst' class="drp-hold dropdown-content">
+            <div id='drp_mlst' class="drp-hold dropdown-content">
 
-				<div class="filter-down">
-					<div class="filter-head">
-						<span class="octicon octicon-x js-menu-close" style="float:right"></span>
-						<span>Filter by milestones</span>
-					</div>
-					<div class="filter-head">
-						<span>
+                <div class="filter-down">
+                    <div class="filter-head">
+                        <span class="octicon octicon-x js-menu-close" style="float:right"></span>
+                        <span>Filter by milestones</span>
+                    </div>
+                    <div class="filter-head">
+                        <span>
                                     <input placeholder="Filter milestones" ng-disabled="1" type="text" class="form-control dont-close input-block">
                                 </span>
-					</div>
-					<div class="item">Nothing to show</div>
-				</div>
-			</div>
-		</div>
-		<!--ASSIGNEE FILTER-->
-		<div onclick="drpTest('drp_ass')" class="dropdown">
-			<a class="issue-list dropbtn dont-close ">
+                    </div>
+                    <div class="item">Nothing to show</div>
+                </div>
+            </div>
+        </div>
+        <!--ASSIGNEE FILTER-->
+        <div onclick="drpTest('drp_ass')" class="dropdown">
+            <a class="issue-list dropbtn dont-close ">
                         Assignee
                             <span class=" octicon octicon-triangle-down v-align-middle text-gray " style="font-size: 10px; "></span>
                          
                     </a>
-			<div id='drp_ass' class="drp-hold dropdown-content">
+            <div id='drp_ass' class="drp-hold dropdown-content">
 
-				<div class="filter-down">
-					<div class="filter-head">
-						<span class="octicon octicon-x js-menu-close" style="float:right"></span>
-						<span>Filter by who’s assigned</span>
-					</div>
-					<div class="filter-head">
-						<span>
+                <div class="filter-down">
+                    <div class="filter-head">
+                        <span class="octicon octicon-x js-menu-close" style="float:right"></span>
+                        <span>Filter by who’s assigned</span>
+                    </div>
+                    <div class="filter-head">
+                        <span>
                                 <input type="text" 
                                        ng-model="issueScopeData.issueFilters.assigneeFilterModel" placeholder="Filter users" class="form-control dont-close input-block">
                             </span>
-					</div>
-					<a ng-style="issueScopeData.issueFilters.assignee === assignee && {'font-weight':600}" ng-click="issueScopeData.assigneeSelect(assignee)" ng-repeat="assignee in issueScopeData.authorsList | filter: issueScopeData.issueFilters.assigneeFilterModel" class="item">
-						<span ng-if="issueScopeData.issueFilters.assignee === assignee" style="line-height: 30px;" class=" octicon octicon-check select-icon-left "></span>
-						<div>
-							<img style=" vertical-align: middle;    padding: 3px;    border-radius: 5px;" height="30" src="https://avatars3.githubusercontent.com/u/867840?v=4&amp;s=60" width="30"> {{assignee}}
-						</div>
-					</a>
-					<a class="item" ng-if="issueScopeData.issueFilters.authorFilterModel.length > 0" ng-click="issueScopeData.authorSelect(issueScopeData.issueFilters.authorFilterModel)"><span style="font-weight: 600">
+                    </div>
+                    <a ng-style="issueScopeData.issueFilters.assignee === assignee && {'font-weight':600}" ng-click="issueScopeData.assigneeSelect(assignee)" ng-repeat="assignee in issueScopeData.authorsList | filter: issueScopeData.issueFilters.assigneeFilterModel" class="item">
+                        <span ng-if="issueScopeData.issueFilters.assignee === assignee" style="line-height: 30px;" class=" octicon octicon-check select-icon-left "></span>
+                        <div>
+                            <img style=" vertical-align: middle;    padding: 3px;    border-radius: 5px;" height="30" src="https://avatars3.githubusercontent.com/u/867840?v=4&amp;s=60" width="30"> {{assignee}}
+                        </div>
+                    </a>
+                    <a class="item" ng-if="issueScopeData.issueFilters.authorFilterModel.length > 0" ng-click="issueScopeData.authorSelect(issueScopeData.issueFilters.authorFilterModel)"><span style="font-weight: 600">
                         assignee:{{issueScopeData.issueFilters.assigneeFilterModel}}
                         </span>
                     <br>
                     Filter by this user</a>
-				</div>
-			</div>
-		</div>
+                </div>
+            </div>
+        </div>
 
-		<!--SORT FILTER-->
-		<div onclick="drpTest('drp_sort')" class="dropdown">
-			<a class="issue-list dropbtn dont-close">
+        <!--SORT FILTER-->
+        <div onclick="drpTest('drp_sort')" class="dropdown">
+            <a class="issue-list dropbtn dont-close">
                           Sort 
                             <span class=" octicon octicon-triangle-down v-align-middle text-gray " style="font-size: 10px; "></span>
                          
                     </a>
-			<div id='drp_sort' class="drp-hold dropdown-content">
+            <div id='drp_sort' class="drp-hold dropdown-content">
 
-				<div class="filter-down">
-					<div class="filter-head">
-						<span class="octicon octicon-x js-menu-close" style="float:right"></span>
-						<span>Sort by</span>
-					</div>
-					<a ng-style="issueScopeData.issueFilters.sort.code === sorter.code && {'font-weight':600}" ng-repeat="sorter in issueScopeData.sortList" ng-click="issueScopeData.sortSelect(sorter)" class="item">
-						<span ng-show="issueScopeData.issueFilters.sort.code === sorter.code" class=" octicon octicon-check select-icon-left "></span> {{sorter.title}}
-					</a>
+                <div class="filter-down">
+                    <div class="filter-head">
+                        <span class="octicon octicon-x js-menu-close" style="float:right"></span>
+                        <span>Sort by</span>
+                    </div>
+                    <a ng-style="issueScopeData.issueFilters.sort.code === sorter.code && {'font-weight':600}" ng-repeat="sorter in issueScopeData.sortList" ng-click="issueScopeData.sortSelect(sorter)" class="item">
+                        <span ng-show="issueScopeData.issueFilters.sort.code === sorter.code" class=" octicon octicon-check select-icon-left "></span> {{sorter.title}}
+                    </a>
 
-				</div>
+                </div>
 
-			</div>
-		</div>
+            </div>
+        </div>
 
 
 
-	</div>
+    </div>
 
 </div>

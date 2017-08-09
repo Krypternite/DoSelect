@@ -24,7 +24,7 @@
 <div class="container issue-container">
     <div ng-include src="'templates/issueFilter.html'"></div>
     <!--|filter : issueScopeData.issueFilters.author-->
-    <div class="issue-list-content " ng-repeat="issue in filteredList = (issueScopeData.openIssueList  |labelFilter : issueScopeData.issueFilters | orderBy : issueScopeData.issueFilters.sort.sortParam )">
+    <div class="issue-list-content " ng-repeat="issue in filteredList = (issueScopeData.openIssueList  |issueFilter : issueScopeData.issueFilters | orderBy : issueScopeData.issueFilters.sort.sortParam )">
         <div style="display: inline-table; ">
             <span class="octicon octicon-issue-opened text-green "></span>
         </div>

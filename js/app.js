@@ -1,17 +1,33 @@
 var app = angular.module('doSelectApp', ["ui.router", 'ngRoute', 'doSelectApp.controllers', 'doSelectApp.services']);
-app.run(function ($rootScope, issueFactory, $state) {
-    issueFactory.openDatabase().then(function () {
-        issueFactory.setupIndexedDb(setupJSON).then(function (data) {
-            console.log("SETUP", data);
-            $state.go('app.issues')
-        }, function (error) {
-            console.log(error);
-        })
-    }, function (err) {
-        console.log(err);
-    });
-});
+app.run(function ($rootScope, issueFactory, $state, $rootScope) {
 
+    /**BROADCAST CATCHER TO HANDLE INIT PROBLEMS*/
+    $rootScope.$on('INIT', function (event, initType) {
+        if (initType.type === 'reinit')
+            $state.go("app.init", {
+                type: 're'
+            });
+        else
+            $state.go("app.init");
+    })
+    /*CODE RUN TO INIT THE DB WHENEVER FIRST RUN*/
+    try {
+        issueFactory.openDatabase().then(function () {
+            issueFactory.setupIndexedDb(setupJSON).then(function (data) {
+                console.log("SETUP", data);
+                appRun = true;
+                $state.go('app.issues')
+            }, function (error) {
+                console.log(error);
+            })
+        }, function (err) {
+            console.log(err);
+        });
+    } catch (exception) {
+        alert("The Database could not be initialized.");
+    }
+});
+/**DIRECTIVE TO CATCH ENTER BUTTON PRESS*/
 app.directive('ngEnter', function () {
     return function (scope, element, attrs) {
         element.bind("keydown keypress", function (event) {
@@ -24,12 +40,19 @@ app.directive('ngEnter', function () {
         });
     };
 });
+/*APP CONFIG*/
 app.config(function ($stateProvider, $urlRouterProvider) {
-
+    /**APP STATES*/
     $stateProvider
         .state('app', {
             url: '/app',
             abstract: true
+        })
+        .state('app.init', {
+            url: '/Init/:type',
+            templateUrl: "templates/init.html",
+            controller: 'initCtrl'
+
         })
         .state('app.issues', {
             url: '/Issues',
@@ -49,7 +72,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             controller: 'issueDetailCtrl'
 
         })
-    $urlRouterProvider.otherwise('/Issues');
+    $urlRouterProvider.otherwise('app/Init');
 
     /*$routeProvider
     .state("/", {
